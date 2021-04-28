@@ -175,7 +175,7 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
             Crop = harvest["Total biomass bag barcode ID"].str.split("_", expand = True)[3],
             BiomassDry = harvest["Dried total biomass (g)"],
             GrainMassDry = harvest["Non-oven-dried grain (g)"],
-            GrainTestWeight = harvest.apply(lambda row: row[testWtLargeCol] if row[testWtLargeCol] else row[testWtSmallCol], axis=1),
+            GrainTestWeight = harvest.apply(lambda row: row[testWtLargeCol] * 0.0705 if row[testWtLargeCol] else row[testWtSmallCol], axis=1),
             #GrainTestWeight = harvest["Manual Test Weight: Large Kettle\n(large container, converted value in small container column) (grams) Conversion to lbs per Bu = 0.0705.  "] * 0.0705,
             CropExists = 1,
             Comments = harvest["Notes"].astype(str) + "| " + harvest["Notes made by Ian Leslie"],
@@ -268,7 +268,7 @@ def read_transform_ea(dirPathToEAFiles, dirPathToQAFile, harvestYear):
     colNames = ["LabId", "Sample", "WeightNitrogen", "WeightCarbon", "Notes"]
     colNamesNotMeasure = ["LabId", "ID2", "Sample", "Notes"]
 
-    eaAll = pd.DataFrame(columns = colNames)
+    eaAll = pd.DataFrame(columns = colNames + ["ID2"])
 
     for eaFile in eaFiles:
         ea = pd.read_excel(eaFile, 
@@ -276,13 +276,16 @@ def read_transform_ea(dirPathToEAFiles, dirPathToQAFile, harvestYear):
             skiprows=11, 
             usecols=colKeep,
             names=colNames)
+        ea = ea.assign(
+                ID2 = ea.apply(lambda row: parse_id2_from_sampleId(row["Sample"], harvestYear), axis = 1)
+            )
 
         eaAll = eaAll.append(ea, ignore_index = True)
 
     # Assign ID2
-    eaAll = eaAll.assign(
-        ID2 = eaAll.apply(lambda row: parse_id2_from_sampleId(row["Sample"], harvestYear), axis = 1)
-    )
+    #eaAll = eaAll.assign(
+    #    ID2 = eaAll.apply(lambda row: parse_id2_from_sampleId(row["Sample"], harvestYear), axis = 1)
+    #)
 
     # Update/Delete values based on quality assurance review
     eaAllQA = caf_qc.quality_assurance(eaAll, dirPathToQAFile, "LabId")
@@ -338,7 +341,7 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
     #colNames = ["LabId", "Sample", "SampleAmount", "CArea", "Delta13C", "TotalN", "TotalC", "Sequence", "Notes"]
     colNames = ["LabId", "Sample", "Delta13C", "TotalN", "TotalC", "Notes"]
     colNamesNotMeasure = ["LabId", "ID2", "Sample", "Notes"]
-    msAll = pd.DataFrame(columns = colNames)
+    msAll = pd.DataFrame(columns = colNames + ["ID2"])
 
     for msFile in msFiles:
         ms = pd.read_excel(msFile, 
@@ -346,13 +349,16 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
             skiprows=10, 
             usecols=colKeep,
             names=colNames)
+        ms = ms.assign(
+                ID2 = ms.apply(lambda row: parse_id2_from_sampleId(row["Sample"], harvestYear), axis = 1)
+            )
 
         msAll = msAll.append(ms, ignore_index = True)
 
     # Assign ID2
-    msAll = msAll.assign(
-        ID2 = msAll.apply(lambda row: parse_id2_from_sampleId(row["Sample"], harvestYear), axis = 1)
-    )
+    #msAll = msAll.assign(
+    #    ID2 = msAll.apply(lambda row: parse_id2_from_sampleId(row["Sample"], harvestYear), axis = 1)
+    #)
 
     # Update/Delete values based on quality assurance review
     msAllQA = caf_qc.quality_assurance(msAll, dirPathToQAFile, "LabId")
@@ -424,6 +430,10 @@ def calculate(df, areaHarvested):
         GrainMass125PerArea = result["GrainMass125"] / areaHarvested
     )
 
+    result = result.assign(
+        HarvestIndex = result["GrainYieldDryPerArea"] / result["BiomassDryPerArea"]
+    )
+
     return result
 
 def process_quality_assurance(df, qa_file_path):
@@ -431,22 +441,66 @@ def process_quality_assurance(df, qa_file_path):
 
     return result
 
-def process_quality_control(df, colsOmit = []):
+def process_quality_control(df, pathToParameterFiles, colsOmit = []):
     dfCopy = df.copy()
 
     dfCopy = caf_qc.initialize_qc(dfCopy, colsOmit)
     dfCopy = caf_qc.set_quality_assurance_applied(dfCopy)
 
+    qcBounds = process_quality_control_point(
+        dfCopy, 
+        (pathToParameterFiles / "qcBounds.csv"),
+        colsOmit)
+
+    # TODO: Check data completeness
+
+    return qcBounds
+
+def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
+    dfCopy = df.copy()
+
+    qcPointParameters = pd.read_csv(pathToParameterFile).dropna()
 
     # TODO: Use a spreadsheet or lookup table (JSON?) that lists measurement type, crop type, and bounds
     # TODO: Maybe go through all columns in df, if a measure column, and lookup values in lookup table?
     #qcBounds = caf_qc.process_qc_bounds_check(dfCopy, "GrainTestWeight", 0.0, 63.0)
-    qcBounds = caf_qc.process_qc_bounds_check(dfCopy, "GrainMoisture", 7.0, 25.0)
-    qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainProtein", 7.0, 22.0)
-    qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainStarch", 52.0, 75.0)
-    qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainGluten", 14.0, 45.0)
+    #qcBounds = caf_qc.process_qc_bounds_check(dfCopy, "GrainMoisture", 7.0, 25.0)
+    #qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainProtein", 7.0, 22.0)
+    #qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainStarch", 52.0, 75.0)
+    #qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainGluten", 14.0, 45.0)
 
-    return qcBounds
+    # Attempt 1
+    #ID2 = nir.apply(lambda row: parse_id2_from_nir_sample_id(row["Sample_ID"], harvestYear), axis=1)
+    #for index, param in qcPointParameters.iterrows():
+    #    qcBounds = dfCopy.apply(lambda row: caf_qc.process_qc_bounds_check(dfCopy, param["FieldName"], ))
+
+    # Attempt 2
+    #for index, row in dfCopy.iterrows():
+    #    qcPointParamsCrop = qcPointParameters[qcPointParameters["Crop"] == row["Crop"]]
+    #    
+    #    for paramIndex, paramRow in qcPointParamsCrop.iterrows():
+    #        dfCopy = caf_qc.process_qc_bounds_check(dfCopy, paramRow["FieldName"], paramRow["Lower"], paramRow["Upper"])
+
+    # Attempt 3: get unique crops in df, filer df and params for each unique crop, merge them to new df
+    cropsInData = dfCopy["Crop"].unique()
+
+    result = pd.DataFrame()
+    for crop in cropsInData:
+        qcPointParamsCrop = qcPointParameters[qcPointParameters["Crop"] == crop]
+        dfCrop = dfCopy[dfCopy["Crop"] == crop]
+
+        for paramIndex, paramRow in qcPointParamsCrop.iterrows():
+            dfCrop = caf_qc.process_qc_bounds_check(dfCrop, paramRow["FieldName"], paramRow["Lower"], paramRow["Upper"])
+
+        result = result.append(dfCrop)
+
+    return result
+
+
+def to_csv(df, harvestYear, outputPath):
+    filePath = outputPath / ("hy" + str(harvestYear) + ".csv")
+    caf_qc.sort_qc_columns(df, True).to_csv(filePath)
+
 
 if __name__ == "__main__":
     print("Not implemented")

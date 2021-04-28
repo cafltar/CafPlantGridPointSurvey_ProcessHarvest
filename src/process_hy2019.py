@@ -7,31 +7,38 @@ def main():
     hy = 2019
     harvestedArea = 2.4384
 
-    print("===2019")
-    path = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\input\\HarvestYear\\HY2019")
+    print("Processing " + str(hy))
+    inputPath = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\input")
+    outputPath = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\output")
+    path = inputPath / "HarvestYear" / "HY2019"
     
     harvest = common.read_transform_harvest01Det(
         (path / "HandHarvest" / "Harvest01_2019_GP-ART-Lime_INT__20191106_IL_20191209.xlsm"),
         (path / "qaChangeFile_HandHarvest.csv"),
         hy)
 
-    #ms = common.read_transform_ms(
-    #    (path / "MS"),
-    #    (path / "qaChangeFile_MS.csv"),
-    #    hy)
+    ms = common.read_transform_ms(
+        (path / "MS"),
+        (path / "qaChangeFile_MS.csv"),
+        hy)
 
     nir = common.read_transform_nir(
         (path / "NIR"), 
         (path) / "qaChangeFile_NIR.csv", 
         hy)
 
-    df = harvest.merge(nir, on = "ID2", how = "left")
+    df = harvest.merge(nir, on = "ID2", how = "left").merge(ms, on = "ID2", how = "left")
 
     # Calc values, create qc cols, assign assurance check passed for all values
     df_calc = common.calculate(df, harvestedArea)
-    df_qc = common.process_quality_control(df_calc, colNotMeasure)
+    df_qc = common.process_quality_control(
+        df_calc, 
+        inputPath,
+        colNotMeasure)
 
-    df_qc.to_csv("foo2019.csv")
+    
+    #df_qc[sortedCols].to_csv("foo2019.csv")
+    common.to_csv(df_qc, hy, outputPath)
 
     print("done")
 

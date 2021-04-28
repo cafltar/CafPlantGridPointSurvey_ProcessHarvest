@@ -7,31 +7,36 @@ def main():
     hy = 2018
     harvestedArea = 2.4384
 
-    print("===2018")
-    hy2018Path = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\input\\HarvestYear\\HY2018")
+    print("Processing " + str(hy))
+    inputPath = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\input")
+    outputPath = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\output")
+    path = inputPath / "HarvestYear" / "HY2018"
     
-    hy2018Harvest = common.read_transform_hand_harvest_2018(
-        (hy2018Path / "HandHarvest" / "LTARcafHarSamp2018HYBioGrainMasses10242018_IL_20191209.xlsx"),
-        (hy2018Path / "qaChangeFile_HandHarvest.csv"),
+    harvest = common.read_transform_hand_harvest_2018(
+        (path / "HandHarvest" / "LTARcafHarSamp2018HYBioGrainMasses10242018_IL_20191209.xlsx"),
+        (path / "qaChangeFile_HandHarvest.csv"),
         hy)
 
-    hy2018MS = common.read_transform_ms(
-        (hy2018Path / "MS"),
-        (hy2018Path / "qaChangeFile_MS.csv"),
+    ms = common.read_transform_ms(
+        (path / "MS"),
+        (path / "qaChangeFile_MS.csv"),
         hy)
 
-    hy2018Nir = common.read_transform_nir(
-        (hy2018Path / "NIR"), 
-        (hy2018Path) / "qaChangeFile_NIR.csv", 
+    nir = common.read_transform_nir(
+        (path / "NIR"), 
+        (path) / "qaChangeFile_NIR.csv", 
         hy)
 
-    hy2018 = hy2018Harvest.merge(hy2018MS, on = "ID2", how = "left").merge(hy2018Nir, on = "ID2", how = "left")
+    df = harvest.merge(ms, on = "ID2", how = "left").merge(nir, on = "ID2", how = "left")
 
     # Calc values, create qc cols, assign assurance check passed for all values
-    hy2018_calc = common.calculate(hy2018, harvestedArea)
-    hy2018_qc = common.process_quality_control(hy2018_calc, colNotMeasure)
+    df_calc = common.calculate(df, harvestedArea)
+    df_qc = common.process_quality_control(
+        df_calc, 
+        inputPath,
+        colNotMeasure)
 
-    hy2018_qc.to_csv("foo2018.csv")
+    common.to_csv(df_qc, hy, outputPath)
 
     print("done")
 
