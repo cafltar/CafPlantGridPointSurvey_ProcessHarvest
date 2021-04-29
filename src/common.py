@@ -1,3 +1,4 @@
+# TODO: Eventually, this will move to PyPi
 import importlib.util
 spec_trans = importlib.util.spec_from_file_location("cafcore", "C:\\Dev\\Projects\\CafLogisticsCorePythonLibrary\\CafCore\\cafcore\\cook_transform.py")
 caf_transform = importlib.util.module_from_spec(spec_trans)
@@ -7,12 +8,20 @@ spec_qc = importlib.util.spec_from_file_location("cafcore", "C:\\Dev\\Projects\\
 caf_qc = importlib.util.module_from_spec(spec_qc)
 spec_qc.loader.exec_module(caf_qc)
 
+spec_io = importlib.util.spec_from_file_location("cafcore", "C:\\Dev\\Projects\\CafLogisticsCorePythonLibrary\\CafCore\\cafcore\\file_io.py")
+caf_io = importlib.util.module_from_spec(spec_io)
+spec_io.loader.exec_module(caf_io)
+
 import pandas as pd
 import numpy as np
 import pathlib
 import glob
 
 def parse_id2_from_sampleId(sampleId, harvestYear):
+    """Extracts the embedded ID2 value from the given sampleId. Expects sampleId to be in format similar to "CE39_Bio_GB_2018_22-B", split by "_"
+    rtype: int
+    """
+
     if not isinstance(sampleId, str):
         return None
 
@@ -25,6 +34,10 @@ def parse_id2_from_sampleId(sampleId, harvestYear):
     return id2
 
 def parse_id2_from_nir_sample_id(sampleId, harvestYear):
+    """Extracts the embedded ID2 value from the given sampleId. Expects sampleId to be in format similar to CW516GP2019WWGr, split by harvestYear (e.g. 2019)
+    :rtype: int
+    """
+
     if not isinstance(sampleId, str):
         return None
 
@@ -38,6 +51,10 @@ def parse_id2_from_nir_sample_id(sampleId, harvestYear):
     return id2
 
 def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harvestYear):
+    """Loads the hand harvest DET for 2017 into a dataframe, formats it, and applies any changes specified in the quality assurance files
+    :rtype: DataFrame
+    """
+
     harvest = pd.read_excel(
         dirPathToHarvestFile,
         sheet_name="Sheet1",
@@ -103,6 +120,10 @@ def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harv
     return harvestStandardCleanQA
 
 def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harvestYear):
+    """Loads the hand harvest DET for 2018 into a dataframe, formats it, and applies any changes specified in the quality assurance files
+    :rtype: DataFrame
+    """
+
     # Read raw data
     harvest = pd.read_excel(
         dirPathToHarvestFile,
@@ -157,6 +178,10 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
     return harvestStandardCleanQA
 
 def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYear):
+    """Loads the hand harvest DET (version "Harvest01") into a dataframe, formats it, applies any changes specified in the quality assurance files
+    :rtype: DataFrame
+    """
+
     harvest = pd.read_excel(
         dirPathToHarvestFile,
         sheet_name=0, 
@@ -212,21 +237,26 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
     return harvestStandardCleanQA
 
 def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
+    """Loads all NIR files into a dataframe, formats it, and makes quality assurance changes as specified
+    :rtype: DataFrame
+    """
+
     filePaths = dirPathToNirFiles / "NIR*.csv"
     nirFiles = glob.glob(str(filePaths))
 
     colNames = ["Date_Time", "ID2", "ProtDM", "Moisture", "StarchDM", "WGlutDM"]
     colNamesNotMeasure = ["Date_Time", "ID2"]
-    sampleIdentifier = "GP"
 
     nirs = pd.DataFrame(columns = colNames)
 
     for nirFile in nirFiles:
         nir = pd.read_csv(nirFile)
-        nirParse = (
-            nir.query(f"Sample_ID.str.upper().str.contains('{sampleIdentifier}')")
+        
+        # Make sure this is a GP sample from CW or CE
+        nirFilter = nir.query("(Sample_ID.str.upper().str.contains('GP')) & ((Sample_ID.str.upper().str.contains('CW')) | (Sample_ID.str.upper().str.contains('CE')))")
+        nirParse = (nirFilter
             .assign(
-                ID2 = nir.apply(lambda row: parse_id2_from_nir_sample_id(row["Sample_ID"], harvestYear), axis=1)
+                ID2 = nirFilter.apply(lambda row: parse_id2_from_nir_sample_id(row["Sample_ID"], harvestYear), axis=1)
             )
         )
 
@@ -261,6 +291,10 @@ def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
     return nirsQAClean
 
 def read_transform_ea(dirPathToEAFiles, dirPathToQAFile, harvestYear):
+    """Loads all EA files into a dataframe, formats it, and makes quality assurance changes as specified
+    :rtype: DataFrame
+    """
+
     filePaths = dirPathToEAFiles / "*.xls"
     eaFiles = glob.glob(str(filePaths))
 
@@ -334,6 +368,10 @@ def read_transform_ea(dirPathToEAFiles, dirPathToQAFile, harvestYear):
         return eaAllQAGrainClean.merge(eaAllQAResidueClean, on = "ID2", how = "left")
 
 def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
+    """Loads all MS files into a dataframe, formats it, and makes quality assurance changes as specified
+    :rtype: DataFrame
+    """
+
     filePaths = dirPathToMSFiles / "*.xls"
     msFiles = glob.glob(str(filePaths))
 
@@ -414,6 +452,10 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
         return msAllQAGrainClean.merge(msAllQAResidueClean, on = "ID2", how = "left")
 
 def calculate(df, areaHarvested):
+    """Calculates grain mass at 0% moisture and 12.5% moisture, biomass dry per area, yield per area, yield per area at 0% moisture, yield per area at 12.5% moisture, and harvest index at greenhouse dried mass
+    :rtype: DataFrame
+    """
+
     result = df.copy()
 
     result = result.assign(
@@ -436,16 +478,18 @@ def calculate(df, areaHarvested):
 
     return result
 
-def process_quality_assurance(df, qa_file_path):
-    result = caf_qc.quality_assurance(df, qa_file_path, "SampleId")
-
-    return result
-
 def process_quality_control(df, pathToParameterFiles, colsOmit = []):
+    """Orchestrates all quality control checks. Parameters are specified in hardcoded file names located in the directory specified in pathToParameterFiles
+    :rtype: DataFrame
+    """
+
     dfCopy = df.copy()
 
     dfCopy = caf_qc.initialize_qc(dfCopy, colsOmit)
     dfCopy = caf_qc.set_quality_assurance_applied(dfCopy)
+
+    if is_there_duplicate_id2(dfCopy):
+        raise Exception("Duplicated ID2 values found")
 
     qcBounds = process_quality_control_point(
         dfCopy, 
@@ -456,32 +500,28 @@ def process_quality_control(df, pathToParameterFiles, colsOmit = []):
 
     return qcBounds
 
+def is_there_duplicate_id2(df) -> bool:
+    """Checks if there are duplicated ID2 values in the provided dataframe
+    """
+
+    num_unique = len(df["ID2"].unique())
+    num_rows = len(df)
+
+    if(num_unique != num_rows):
+        return True
+    else:
+        return False
+
+    
 def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
+    """Conducts a series of point (bounds) checks using parameters specified in pathToParameterFile. This function adds three columns for each measurement checked (_qcApplied, _qcResult, _qcPhrase).
+    :rtype: DataFrame
+    """
     dfCopy = df.copy()
 
     qcPointParameters = pd.read_csv(pathToParameterFile).dropna()
 
-    # TODO: Use a spreadsheet or lookup table (JSON?) that lists measurement type, crop type, and bounds
-    # TODO: Maybe go through all columns in df, if a measure column, and lookup values in lookup table?
-    #qcBounds = caf_qc.process_qc_bounds_check(dfCopy, "GrainTestWeight", 0.0, 63.0)
-    #qcBounds = caf_qc.process_qc_bounds_check(dfCopy, "GrainMoisture", 7.0, 25.0)
-    #qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainProtein", 7.0, 22.0)
-    #qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainStarch", 52.0, 75.0)
-    #qcBounds = caf_qc.process_qc_bounds_check(qcBounds, "GrainGluten", 14.0, 45.0)
-
-    # Attempt 1
-    #ID2 = nir.apply(lambda row: parse_id2_from_nir_sample_id(row["Sample_ID"], harvestYear), axis=1)
-    #for index, param in qcPointParameters.iterrows():
-    #    qcBounds = dfCopy.apply(lambda row: caf_qc.process_qc_bounds_check(dfCopy, param["FieldName"], ))
-
-    # Attempt 2
-    #for index, row in dfCopy.iterrows():
-    #    qcPointParamsCrop = qcPointParameters[qcPointParameters["Crop"] == row["Crop"]]
-    #    
-    #    for paramIndex, paramRow in qcPointParamsCrop.iterrows():
-    #        dfCopy = caf_qc.process_qc_bounds_check(dfCopy, paramRow["FieldName"], paramRow["Lower"], paramRow["Upper"])
-
-    # Attempt 3: get unique crops in df, filer df and params for each unique crop, merge them to new df
+    # Get unique crops in df, filer df and params for each unique crop, merge them to new df
     cropsInData = dfCopy["Crop"].unique()
 
     result = pd.DataFrame()
@@ -498,8 +538,19 @@ def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
 
 
 def to_csv(df, harvestYear, outputPath):
-    filePath = outputPath / ("hy" + str(harvestYear) + ".csv")
-    caf_qc.sort_qc_columns(df, True).to_csv(filePath)
+    """Outputs the data as a csv file named hy{harvestYear}.csv
+    """
+    # TODO: Output version with QC columns scrubbed and append _P#A# to filename
+    # TODO: Add current date to output filename
+    # TODO: Both of the above are probably worthy of being in CafCore
+    #filePath = outputPath / ("hy" + str(harvestYear) + ".csv")
+    #caf_qc.sort_qc_columns(df, True).to_csv(filePath)
+
+    caf_io.write_data_csv(
+        caf_qc.sort_qc_columns(df, True),
+        (outputPath),
+        ("hy" + str(harvestYear))
+    )
 
 
 if __name__ == "__main__":
