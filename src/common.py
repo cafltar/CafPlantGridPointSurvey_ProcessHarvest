@@ -1,21 +1,10 @@
-# TODO: Eventually, this will move to PyPi
-import importlib.util
-spec_trans = importlib.util.spec_from_file_location("cafcore", "C:\\Dev\\Projects\\CafLogisticsCorePythonLibrary\\CafCore\\cafcore\\cook_transform.py")
-caf_transform = importlib.util.module_from_spec(spec_trans)
-spec_trans.loader.exec_module(caf_transform)
-
-spec_qc = importlib.util.spec_from_file_location("cafcore", "C:\\Dev\\Projects\\CafLogisticsCorePythonLibrary\\CafCore\\cafcore\\qc.py")
-caf_qc = importlib.util.module_from_spec(spec_qc)
-spec_qc.loader.exec_module(caf_qc)
-
-spec_io = importlib.util.spec_from_file_location("cafcore", "C:\\Dev\\Projects\\CafLogisticsCorePythonLibrary\\CafCore\\cafcore\\file_io.py")
-caf_io = importlib.util.module_from_spec(spec_io)
-spec_io.loader.exec_module(caf_io)
-
 import pandas as pd
 import numpy as np
 import pathlib
 import glob
+
+import cafcore.qc
+import cafcore.file_io
 
 def parse_id2_from_sampleId(sampleId, harvestYear):
     """Extracts the embedded ID2 value from the given sampleId. Expects sampleId to be in format similar to "CE39_Bio_GB_2018_22-B", split by "_"
@@ -106,14 +95,14 @@ def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harv
     colNotMeasure = ["HarvestYear", "ID2", "SampleId", "Comments"]
 
     # Update/Delete values based on quality assurance review
-    harvestStandardCleanQA = caf_qc.initialize_qc(
+    harvestStandardCleanQA = cafcore.qc.initialize_qc(
         harvestStandardClean, 
         colNotMeasure)
-    harvestStandardCleanQA = caf_qc.quality_assurance(
+    harvestStandardCleanQA = cafcore.qc.quality_assurance(
         harvestStandardCleanQA, 
         dirPathToQAFile,
         "SampleId")
-    harvestStandardCleanQA = caf_qc.set_quality_assurance_applied(
+    harvestStandardCleanQA = cafcore.qc.set_quality_assurance_applied(
         harvestStandardCleanQA,
         colNotMeasure)
 
@@ -164,14 +153,14 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
     colNotMeasure = ["HarvestYear", "ID2", "SampleId", "Comments"]
 
     # Update/Delete values based on quality assurance review
-    harvestStandardCleanQA = caf_qc.initialize_qc(
+    harvestStandardCleanQA = cafcore.qc.initialize_qc(
         harvestStandardClean, 
         colNotMeasure)
-    harvestStandardCleanQA = caf_qc.quality_assurance(
+    harvestStandardCleanQA = cafcore.qc.quality_assurance(
         harvestStandardCleanQA, 
         dirPathToQAFile,
         "SampleId")
-    harvestStandardCleanQA = caf_qc.set_quality_assurance_applied(
+    harvestStandardCleanQA = cafcore.qc.set_quality_assurance_applied(
         harvestStandardCleanQA,
         colNotMeasure)
 
@@ -223,14 +212,14 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
     colNotMeasure = ["HarvestYear", "ID2", "SampleId", "Comments"]
 
      # Update/Delete values based on quality assurance review
-    harvestStandardCleanQA = caf_qc.initialize_qc(
+    harvestStandardCleanQA = cafcore.qc.initialize_qc(
         harvestStandardClean, 
         colNotMeasure)
-    harvestStandardCleanQA = caf_qc.quality_assurance(
+    harvestStandardCleanQA = cafcore.qc.quality_assurance(
         harvestStandardCleanQA, 
         dirPathToQAFile,
         "SampleId")
-    harvestStandardCleanQA = caf_qc.set_quality_assurance_applied(
+    harvestStandardCleanQA = cafcore.qc.set_quality_assurance_applied(
         harvestStandardCleanQA,
         colNotMeasure)
 
@@ -264,9 +253,9 @@ def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
 
     nirs = nirs[colNames]
 
-    nirsQA = caf_qc.initialize_qc(nirs, colNamesNotMeasure)
-    nirsQA = caf_qc.quality_assurance(nirsQA, dirPathToQAFile, "Date_Time")
-    nirsQA = caf_qc.set_quality_assurance_applied(nirsQA, colNamesNotMeasure)
+    nirsQA = cafcore.qc.initialize_qc(nirs, colNamesNotMeasure)
+    nirsQA = cafcore.qc.quality_assurance(nirsQA, dirPathToQAFile, "Date_Time")
+    nirsQA = cafcore.qc.set_quality_assurance_applied(nirsQA, colNamesNotMeasure)
 
     nirsQAClean = (nirsQA
         .drop(columns = ["Date_Time"])
@@ -322,10 +311,10 @@ def read_transform_ea(dirPathToEAFiles, dirPathToQAFile, harvestYear):
     #)
 
     # Update/Delete values based on quality assurance review
-    eaAllQA = caf_qc.quality_assurance(eaAll, dirPathToQAFile, "LabId")
+    eaAllQA = cafcore.qc.quality_assurance(eaAll, dirPathToQAFile, "LabId")
 
-    eaAllQA = caf_qc.initialize_qc(eaAllQA, colNamesNotMeasure)
-    eaAllQA = caf_qc.set_quality_assurance_applied(eaAllQA,colNamesNotMeasure)
+    eaAllQA = cafcore.qc.initialize_qc(eaAllQA, colNamesNotMeasure)
+    eaAllQA = cafcore.qc.set_quality_assurance_applied(eaAllQA,colNamesNotMeasure)
 
     # Split dataset into grain analysis and residue analysis
     eaAllQAGrain = eaAllQA[eaAllQA["Sample"].str.contains("_Gr_|_MGr_|_FMGr_", na = False)]
@@ -399,10 +388,10 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
     #)
 
     # Update/Delete values based on quality assurance review
-    msAllQA = caf_qc.quality_assurance(msAll, dirPathToQAFile, "LabId")
+    msAllQA = cafcore.qc.quality_assurance(msAll, dirPathToQAFile, "LabId")
 
-    msAllQA = caf_qc.initialize_qc(msAllQA, colNamesNotMeasure)
-    msAllQA = caf_qc.set_quality_assurance_applied(msAllQA,colNamesNotMeasure)
+    msAllQA = cafcore.qc.initialize_qc(msAllQA, colNamesNotMeasure)
+    msAllQA = cafcore.qc.set_quality_assurance_applied(msAllQA,colNamesNotMeasure)
 
     # Split dataset into grain analysis and residue analysis
     msAllQAGrain = msAllQA[msAllQA["Sample"].str.contains("_Gr_|_MGr_|_FMGr_", na = False)]
@@ -485,8 +474,8 @@ def process_quality_control(df, pathToParameterFiles, colsOmit = []):
 
     dfCopy = df.copy()
 
-    dfCopy = caf_qc.initialize_qc(dfCopy, colsOmit)
-    dfCopy = caf_qc.set_quality_assurance_applied(dfCopy)
+    dfCopy = cafcore.qc.initialize_qc(dfCopy, colsOmit)
+    dfCopy = cafcore.qc.set_quality_assurance_applied(dfCopy)
 
     if is_there_duplicate_id2(dfCopy):
         raise Exception("Duplicated ID2 values found")
@@ -530,7 +519,7 @@ def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
         dfCrop = dfCopy[dfCopy["Crop"] == crop]
 
         for paramIndex, paramRow in qcPointParamsCrop.iterrows():
-            dfCrop = caf_qc.process_qc_bounds_check(dfCrop, paramRow["FieldName"], paramRow["Lower"], paramRow["Upper"])
+            dfCrop = cafcore.qc.process_qc_bounds_check(dfCrop, paramRow["FieldName"], paramRow["Lower"], paramRow["Upper"])
 
         result = result.append(dfCrop)
 
@@ -544,10 +533,10 @@ def to_csv(df, harvestYear, outputPath):
     # TODO: Add current date to output filename
     # TODO: Both of the above are probably worthy of being in CafCore
     #filePath = outputPath / ("hy" + str(harvestYear) + ".csv")
-    #caf_qc.sort_qc_columns(df, True).to_csv(filePath)
+    #cafcore.qc.sort_qc_columns(df, True).to_csv(filePath)
 
-    caf_io.write_data_csv(
-        caf_qc.sort_qc_columns(df, True),
+    cafcore.file_io.write_data_csv(
+        cafcore.qc.sort_qc_columns(df, True),
         (outputPath),
         ("hy" + str(harvestYear))
     )
