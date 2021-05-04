@@ -36,8 +36,6 @@ def main():
         inputPath,
         colNotMeasure)
 
-    
-    #df_qc[sortedCols].to_csv("foo2019.csv")
     common.to_csv(df_qc, hy, outputPath)
 
     print("done")
