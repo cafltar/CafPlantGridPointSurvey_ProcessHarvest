@@ -1,0 +1,9 @@
+#requires -PSEdition Core
+
+echo "Starting Workflow"
+
+python.exe .\src\process_hy2017.py
+python.exe .\src\process_hy2018.py
+python.exe .\src\process_hy2019.py
+
+echo "Finished Worfklow"

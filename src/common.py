@@ -250,7 +250,7 @@ def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
             )
         )
 
-        nirs = nirs.append(nirParse, ignore_index = True)
+        nirs = nirs.append(nirParse, ignore_index = True, sort = True)
 
     nirs = nirs[colNames]
 
