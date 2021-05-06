@@ -401,10 +401,10 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
     # Standardize column names
     msAllQAGrainClean = (msAllQAGrain
         .rename(columns = {
-            "Delta13C": "Graind13C",
-            "Delta13C_qcApplied": "Graind13C_qcApplied",
-            "Delta13C_qcResult": "Graind13C_qcResult",
-            "Delta13C_qcPhrase": "Graind13C_qcPhrase",
+            "Delta13C": "Grain13C",
+            "Delta13C_qcApplied": "Grain13C_qcApplied",
+            "Delta13C_qcResult": "Grain13C_qcResult",
+            "Delta13C_qcPhrase": "Grain13C_qcPhrase",
             "TotalC": "GrainCarbon",
             "TotalC_qcApplied": "GrainCarbon_qcApplied",
             "TotalC_qcResult": "GrainCarbon_qcResult",
@@ -418,10 +418,10 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
 
     msAllQAResidueClean = (msAllQAResidue
         .rename(columns = {
-            "Delta13C": "Residued13C",
-            "Delta13C_qcApplied": "Residued13C_qcApplied",
-            "Delta13C_qcResult": "Residued13C_qcResult",
-            "Delta13C_qcPhrase": "Residued13C_qcPhrase",
+            "Delta13C": "Residue13C",
+            "Delta13C_qcApplied": "Residue13C_qcApplied",
+            "Delta13C_qcResult": "Residue13C_qcResult",
+            "Delta13C_qcPhrase": "Residue13C_qcPhrase",
             "TotalC": "ResidueCarbon",
             "TotalC_qcApplied": "ResidueCarbon_qcApplied",
             "TotalC_qcResult": "ResidueCarbon_qcResult",
@@ -458,8 +458,8 @@ def calculate(df, areaHarvested):
     result = result.assign(
         BiomassDryPerArea = result["BiomassDry"] / areaHarvested,
         GrainYieldDryPerArea = result["GrainMassDry"] / areaHarvested,
-        GrainMass0PerArea = result["GrainMass0"] / areaHarvested,
-        GrainMass125PerArea = result["GrainMass125"] / areaHarvested
+        GrainYield0PerArea = result["GrainMass0"] / areaHarvested,
+        GrainYield125PerArea = result["GrainMass125"] / areaHarvested
     )
 
     result = result.assign(
@@ -537,11 +537,84 @@ def to_csv(df, harvestYear, outputPath):
     #cafcore.qc.sort_qc_columns(df, True).to_csv(filePath)
 
     cafcore.file_io.write_data_csv(
-        cafcore.qc.sort_qc_columns(df, True),
+        df,
         (outputPath),
         ("hy" + str(harvestYear))
     )
 
+def standardize_cols(df):
+    
+    result = df.copy()
+
+    standardCols = get_standard_col_names()
+
+    # Create missing columns, if needed, and set QA
+    for col in standardCols:
+        if col not in result:
+            result[col] = np.nan
+
+    colsNonMeasure = get_standard_col_names_nonmeasure()
+    result = cafcore.qc.initialize_qc(result, colsNonMeasure)
+    result = cafcore.qc.set_quality_assurance_applied(result, colsNonMeasure)
+
+    # Reorder columns, standard first, then QC ones (applied, result, then phrase)
+    qcApplied = [c for c in result.columns if "_qcApplied" in c]
+    qcResult = [c for c in result.columns if "_qcResult" in c]
+    qcPhrase = [c for c in result.columns if "_qcPhrase" in c]
+
+    allColsOrdered = standardCols + qcApplied + qcResult + qcPhrase
+
+    # Double check that ordered cols is same length as original cols
+    if len(allColsOrdered) != len(result.columns):
+        raise Exception("Ordered column length do not match original column length")
+
+    # Return df with new columns, ordered, and grouped
+    result = cafcore.qc.sort_qc_columns(result[allColsOrdered], True)
+
+    return result
+
+def get_standard_col_names():
+    cols = [
+        "HarvestYear",
+        "ID2",
+        "SampleId",
+        "Crop",
+        "CropExists",
+        "BiomassDry",
+        "GrainMassDry",
+        "GrainTestWeight",
+        "GrainMoisture",
+        "GrainProtein",
+        "GrainStarch",
+        "GrainGluten",
+        "GrainCarbon",
+        "Grain13C",
+        "GrainNitrogen",
+        "ResidueCarbon",
+        "Residue13C",
+        "ResidueNitrogen",
+        "GrainMass0",
+        "GrainMass125",
+        "GrainYieldDryPerArea",
+        "GrainYield0PerArea",
+        "GrainYield125PerArea",
+        "BiomassDryPerArea",
+        "HarvestIndex",
+        "Comments"
+    ]
+
+    return cols
+
+def get_standard_col_names_nonmeasure():
+    cols = [
+        "HarvestYear",
+        "ID2",
+        "SampleId",
+        "Crop",
+        "Comments"
+    ]
+
+    return cols
 
 if __name__ == "__main__":
     print("Not implemented")

@@ -31,7 +31,9 @@ def main():
         inputPath,
         colNotMeasure)
 
-    common.to_csv(df_qc, hy, outputPath)
+    df_final = common.standardize_cols(df_qc)
+
+    common.to_csv(df_final, hy, outputPath)
 
     print("done")
 
