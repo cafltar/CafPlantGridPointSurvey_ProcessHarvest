@@ -1,19 +1,20 @@
 import common
 import pathlib
 import pandas as pd
+import sys
 
-def main():
+def main(dataPath, harvestDetFilename):
     colNotMeasure = ["HarvestYear", "ID2", "Crop", "SampleId", "Comments"]
     hy = 2019
     harvestedArea = 2.4384
 
     print("Processing " + str(hy))
-    inputPath = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\input")
-    outputPath = pathlib.Path("C:\\Dev\\Projects\\CafPlantGridPointSurvey\\ProcessHarvest\\data\\output")
+    inputPath = pathlib.Path(dataPath, "input")
+    outputPath = pathlib.Path(dataPath, "output")
     path = inputPath / "HarvestYear" / "HY2019"
     
     harvest = common.read_transform_harvest01Det(
-        (path / "HandHarvest" / "Harvest01_2019_GP-ART-Lime_INT__20191106_IL_20191209.xlsm"),
+        (path / "HandHarvest" / harvestDetFilename),
         (path / "qaChangeFile_HandHarvest.csv"),
         hy)
 
@@ -43,4 +44,10 @@ def main():
     print("done")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) < 3:
+        raise Exception("Must specify path to datasets and name of harvest DET")
+
+    dataPath = pathlib.Path(sys.argv[1])
+    harvestDetFilename = sys.argv[2]
+
+    main(dataPath, harvestDetFilename)
