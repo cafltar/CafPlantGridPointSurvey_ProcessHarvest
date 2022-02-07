@@ -176,7 +176,9 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
         sheet_name=0, 
         skiprows=6,
         na_values=["N/A", ".", ""]
-    ).query("`Project ID` == 'GP' & (`Total biomass bag barcode ID`.str.contains('CE') | `Total biomass bag barcode ID`.str.contains('CW'))")
+    )
+
+    harvest = harvest[(harvest['Project ID'] == 'GP') & ((harvest['Total biomass bag barcode ID'].str.contains('CE')) | (harvest['Total biomass bag barcode ID'].str.contains('CW')))]
 
     testWtLargeCol = "Manual Test Weight: Large Kettle\n(large container, converted value in small container column) (grams) Conversion to lbs per Bu = 0.0705.  "
     testWtSmallCol = "Manual Test Weight: Small Kettle\n(lbs / bushel)\n(Manual, small container if no # in large container column)"
@@ -242,7 +244,7 @@ def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
         nir = pd.read_csv(nirFile)
         
         # Make sure this is a GP sample from CW or CE
-        nirFilter = nir.query("(Sample_ID.str.upper().str.contains('GP')) & ((Sample_ID.str.upper().str.contains('CW')) | (Sample_ID.str.upper().str.contains('CE')))")
+        nirFilter = nir[(nir['Sample_ID'].str.upper().str.contains('GP')) & ((nir['Sample_ID'].str.upper().str.contains('CW')) | (nir['Sample_ID'].str.upper().str.contains('CE')))]
         nirParse = (nirFilter
             .assign(
                 ID2 = nirFilter.apply(lambda row: parse_id2_from_nir_sample_id(row["Sample_ID"], harvestYear), axis=1)
