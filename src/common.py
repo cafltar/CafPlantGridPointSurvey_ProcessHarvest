@@ -123,8 +123,7 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
         nrows = 532
     )
 
-    harvestStandard = (
-        harvest.assign(
+    harvestStandard = harvest.assign(
             HarvestYear = harvestYear,
             #ID2 = harvestDetRaw["total biomass bag barcode ID"].str.split("_", expand = True)[0].str.replace("CE", "").str.replace("CW", ""),
             ID2 = harvest.apply(lambda row: parse_id2_from_sampleId(row["total biomass bag barcode ID"], harvestYear), axis=1),
@@ -136,8 +135,8 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
             Comments = harvest["notes"].astype(str) + "| " + harvest["Notes by Ian Leslie 10/22/2019"],
             AreaOfInterestID2 = harvest["total biomass bag barcode ID"].str.split("_", expand = True)[0]            
         )
-        .query("(AreaOfInterestID2.str.contains('CW') | AreaOfInterestID2.str.contains('CE'))")
-    )
+
+    harvestStandard = harvestStandard[(harvestStandard['AreaOfInterestID2'].str.contains('CW')) | (harvestStandard['AreaOfInterestID2'].str.contains('CE'))]
 
     colNames = [
         "HarvestYear",
