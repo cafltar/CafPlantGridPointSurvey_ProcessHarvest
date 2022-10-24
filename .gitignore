@@ -45,3 +45,4 @@ pydevd*.log
 nodeLanguageServer/**
 nodeLanguageServer.*/**
 .vscode
+data/output
