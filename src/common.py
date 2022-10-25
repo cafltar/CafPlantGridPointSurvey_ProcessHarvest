@@ -12,7 +12,12 @@ def parse_id2_from_sampleId(sampleId, harvestYear):
     rtype: int
     """
 
+    # ensures passed type is a string
     if not isinstance(sampleId, str):
+        return None
+
+    # ensures sampleId is for Cook field (starts with either "CE" or "CW")
+    if not sampleId.startswith(tuple(["CE", "CW"])):
         return None
 
     id2 = 0
@@ -373,6 +378,14 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
     msAll = pd.DataFrame(columns = colNames + ["ID2"])
 
     for msFile in msFiles:
+        # Check number of named columns to infer structure of xls file (JLC removed column around 2022)
+        headerCheck = pd.read_excel(msFile,
+            sheet_name="Summary Table",
+            skiprows=10,
+            nrows=1)
+        if len(headerCheck.columns) == 8:
+            colKeep = [0,1,3,4,5,7]
+
         ms = pd.read_excel(msFile, 
             sheet_name="Summary Table", 
             skiprows=10, 
@@ -397,7 +410,7 @@ def read_transform_ms(dirPathToMSFiles, dirPathToQAFile, harvestYear):
 
     # Split dataset into grain analysis and residue analysis
     msAllQAGrain = msAllQA[msAllQA["Sample"].str.contains("_Gr_|_MGr_|_FMGr_", na = False)]
-    msAllQAResidue = msAllQA[msAllQA["Sample"].str.contains("_Res_|_MRes_|_FMRes_", na = False)]
+    msAllQAResidue = msAllQA[msAllQA["Sample"].str.contains("_Res_|_MRes_|_FMRes_|_FMRes", na = False)]
 
     # Standardize column names
     msAllQAGrainClean = (msAllQAGrain
