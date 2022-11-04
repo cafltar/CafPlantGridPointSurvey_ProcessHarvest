@@ -8,7 +8,7 @@ WW,GrainGluten,14,45,
 WW,GrainTestWeight,0,63,
 WW,GrainMass0,,,
 WW,GrainMass125,,,
-WW,BiomassDryPerArea,,,
+WW,BiomassDryPerArea,0,2493.7,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 WW,GrainYieldDryPerArea,0,1056.3,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 WW,GrainYield0PerArea,,,
 WW,GrainYield125PerArea,,,
@@ -26,7 +26,7 @@ SW,GrainGluten,14,45,
 SW,GrainTestWeight,0,63,
 SW,GrainMass0,,,
 SW,GrainMass125,,,
-SW,BiomassDryPerArea,,,
+SW,BiomassDryPerArea,0,2099,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 SW,GrainYieldDryPerArea,0,883.1,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 SW,GrainYield0PerArea,,,
 SW,GrainYield125PerArea,,,
@@ -44,7 +44,7 @@ GB,GrainGluten,,,
 GB,GrainTestWeight,,,
 GB,GrainMass0,,,
 GB,GrainMass125,,,
-GB,BiomassDryPerArea,,,
+GB,BiomassDryPerArea,0,925.6,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 GB,GrainYieldDryPerArea,0,479.4,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 GB,GrainYield0PerArea,,,
 GB,GrainYield125PerArea,,,
@@ -62,7 +62,7 @@ SC,GrainGluten,,,
 SC,GrainTestWeight,,,
 SC,GrainMass0,,,
 SC,GrainMass125,,,
-SC,BiomassDryPerArea,,,
+SC,BiomassDryPerArea,0,1680.6,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 SC,GrainYieldDryPerArea,0,517.4,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 SC,GrainYield0PerArea,,,
 SC,GrainYield125PerArea,,,
@@ -98,7 +98,7 @@ SB,GrainGluten,,,
 SB,GrainTestWeight,,,
 SB,GrainMass0,,,
 SB,GrainMass125,,,
-SB,BiomassDryPerArea,,,
+SB,BiomassDryPerArea,59.4,1983.3,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 SB,GrainYieldDryPerArea,0,944.7,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 SB,GrainYield0PerArea,,,
 SB,GrainYield125PerArea,,,
@@ -116,7 +116,7 @@ SP,GrainGluten,,,
 SP,GrainTestWeight,,,
 SP,GrainMass0,,,
 SP,GrainMass125,,,
-SP,BiomassDryPerArea,,,
+SP,BiomassDryPerArea,0,916.4,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 SP,GrainYieldDryPerArea,0,593.4,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 SP,GrainYield0PerArea,,,
 SP,GrainYield125PerArea,,,
@@ -152,7 +152,7 @@ WP,GrainGluten,,,
 WP,GrainTestWeight,,,
 WP,GrainMass0,,,
 WP,GrainMass125,,,
-WP,BiomassDryPerArea,,,
+WP,BiomassDryPerArea,0,1638.3,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQRupdate2\project1IQR\bounds.csv
 WP,GrainYieldDryPerArea,0,537.8,CafPlantGridPointSurvey\2022\Working\DetermineVariableBounds\project1IQR\bounds.csv
 WP,GrainYield0PerArea,,,
 WP,GrainYield125PerArea,,,
