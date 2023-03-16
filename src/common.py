@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import pathlib
 import glob
+import datetime
 
 #https://github.com/cafltar/cafcore/releases/tag/v0.1.0
 import cafcore.qc
@@ -9,6 +10,7 @@ import cafcore.file_io
 
 def parse_id2_from_sampleId(sampleId, harvestYear):
     """Extracts the embedded ID2 value from the given sampleId. Expects sampleId to be in format similar to "CE39_Bio_GB_2018_22-B", split by "_"
+    Returns None if harvest year is less than 2017 or sample ID does not start with "CE" or "CW"
     rtype: int
     """
 
@@ -28,6 +30,28 @@ def parse_id2_from_sampleId(sampleId, harvestYear):
 
     return id2
 
+def parse_fieldId_from_sampleId(sampleId, harvestYear):
+    """Extracts the embedded Field ID (CE or CW) from the given sampleId. Expects sampleId to be in format similar to "CE39_Bio_GB_2018_22-B", split by "_"
+    Returns None if harvest year is less than 2017 or sample ID does not start with "CE" or "CW"
+    rtype: int
+    """
+
+    # ensures passed type is a string
+    if not isinstance(sampleId, str):
+        return None
+
+    # ensures sampleId is for Cook field (starts with either "CE" or "CW")
+    if not sampleId.startswith(tuple(["CE", "CW"])):
+        return None
+    
+    fieldId = ""
+    if(harvestYear >= 2017):
+        fieldId = sampleId[:2]
+    else:
+        fieldId = None
+
+    return fieldId
+
 def parse_id2_from_nir_sample_id(sampleId, harvestYear):
     """Extracts the embedded ID2 value from the given sampleId. Expects sampleId to be in format similar to CW516GP2019WWGr, split by harvestYear (e.g. 2019)
     :rtype: int
@@ -45,6 +69,21 @@ def parse_id2_from_nir_sample_id(sampleId, harvestYear):
     
     return id2
 
+def parse_harvest_date(harvestDate, harvestYear):
+    """Converts the harvest date to ISO format YYYY-MM-DD and outputs as a string
+    """
+
+    result = ""
+    if(harvestYear >= 2017):
+        try:
+            harvestDatetime = pd.to_datetime(harvestDate)
+            result = datetime.datetime.strftime(harvestDatetime, '%Y-%m-%d')
+        except:
+            result = None
+
+    return result
+
+
 def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harvestYear):
     """Loads the hand harvest DET for 2017 into a dataframe, formats it, and applies any changes specified in the quality assurance files
     :rtype: DataFrame
@@ -61,11 +100,13 @@ def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harv
     # Standardize column names
     harvestStandard = (
         harvest.assign(
-            HarvestYear = 2017,
+            HarvestYear = harvestYear,
+            FieldId = harvest.apply(lambda row: parse_fieldId_from_sampleId(row["Total Biomass Barcode ID"], harvestYear), axis=1),
             #ID2 = harvestDetRaw["Total Biomass Barcode ID"].str.split("_", expand = True)[0].str.replace("CE", "").str.replace("CW", ""),
-            ID2 = harvest.apply(lambda row: parse_id2_from_sampleId(row["Total Biomass Barcode ID"], 2017), axis=1),
+            ID2 = harvest.apply(lambda row: parse_id2_from_sampleId(row["Total Biomass Barcode ID"], harvestYear), axis=1),
             SampleId = harvest["Total Biomass Barcode ID"],
             Crop = harvest["Total Biomass Barcode ID"].str.split("_", expand = True)[2],
+            HarvestDate = None,
             BiomassDry = harvest["Dried Total Biomass mass + bag(g) + bags inside"] - harvest["Average Dried total biomass bag + empty grain bag & empty residue bag inside mass (g)"],
             GrainMassDry = np.where(
                 (pd.isnull(harvest["Non-Oven dried grain mass (g) Reweighed after being sieved"])),  
@@ -83,9 +124,11 @@ def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harv
 
     colNames = [
         "HarvestYear",
+        "FieldId",
         "ID2",
         "SampleId",
         "Crop",
+        "HarvestDate",
         "BiomassDry",
         "GrainMassDry",
         "GrainMoisture",
@@ -98,7 +141,7 @@ def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harv
 
     harvestStandardClean = harvestStandard[colNames]
 
-    colNotMeasure = ["HarvestYear", "ID2", "SampleId", "Comments"]
+    colNotMeasure = ["HarvestYear", "FieldId", "ID2", "SampleId", "HarvestDate", "Comments"]
 
     # Update/Delete values based on quality assurance review
     harvestStandardCleanQA = cafcore.qc.initialize_qc(
@@ -130,10 +173,12 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
 
     harvestStandard = harvest.assign(
             HarvestYear = harvestYear,
+            FieldId = harvest.apply(lambda row: parse_fieldId_from_sampleId(row["total biomass bag barcode ID"], harvestYear), axis=1),
             #ID2 = harvestDetRaw["total biomass bag barcode ID"].str.split("_", expand = True)[0].str.replace("CE", "").str.replace("CW", ""),
             ID2 = harvest.apply(lambda row: parse_id2_from_sampleId(row["total biomass bag barcode ID"], harvestYear), axis=1),
             SampleId = harvest["total biomass bag barcode ID"],
             Crop = harvest["total biomass bag barcode ID"].str.split("_", expand = True)[2],
+            HarvestDate = harvest.apply(lambda row: parse_harvest_date(row["date total biomass collected"], harvestYear), axis=1),
             BiomassDry = harvest["dried total biomass mass + bag + residue bag + grain bag (g)"] - harvest["average dried empty total biomass bag +  grain bag + residue bag  (g)"],
             GrainMassDry = harvest["non-oven dried grain mass + bag (g)"] - harvest["average empty dried grain bag mass (g)"],
             CropExists = 1,
@@ -145,9 +190,11 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
 
     colNames = [
         "HarvestYear",
+        "FieldId",
         "ID2",
         "SampleId",
         "Crop",
+        "HarvestDate",
         "BiomassDry",
         "GrainMassDry",
         "CropExists",
@@ -155,7 +202,7 @@ def read_transform_hand_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harv
 
     harvestStandardClean = harvestStandard[colNames]
 
-    colNotMeasure = ["HarvestYear", "ID2", "SampleId", "Comments"]
+    colNotMeasure = ["HarvestYear", "FieldId", "ID2", "SampleId", "HarvestDate", "Comments"]
 
     # Update/Delete values based on quality assurance review
     harvestStandardCleanQA = cafcore.qc.initialize_qc(
@@ -191,8 +238,10 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
     harvestStandard = (
         harvest.assign(
             HarvestYear = harvestYear,
+            FieldId = harvest.apply(lambda row: parse_fieldId_from_sampleId(row["Total biomass bag barcode ID"], harvestYear), axis=1),
             ID2 = harvest.apply(lambda row: parse_id2_from_sampleId(row["Total biomass bag barcode ID"], harvestYear), axis=1),
             SampleId = harvest["Total biomass bag barcode ID"],
+            HarvestDate = harvest.apply(lambda row: parse_harvest_date(row["Date total biomass collected (g)"], harvestYear), axis=1),
             Crop = harvest["Total biomass bag barcode ID"].str.split("_", expand = True)[3],
             BiomassDry = harvest["Dried total biomass (g)"],
             GrainMassDry = harvest["Non-oven-dried grain (g)"],
@@ -205,9 +254,11 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
 
     colNames = [
         "HarvestYear",
+        "FieldId",
         "ID2",
         "SampleId",
         "Crop",
+        "HarvestDate",
         "BiomassDry",
         "GrainMassDry",
         "GrainTestWeight",
@@ -216,7 +267,7 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
 
     harvestStandardClean = harvestStandard[colNames]
 
-    colNotMeasure = ["HarvestYear", "ID2", "SampleId", "Comments"]
+    colNotMeasure = ["HarvestYear", "FieldId", "ID2", "SampleId", "HarvestDate", "Comments"]
 
      # Update/Delete values based on quality assurance review
     harvestStandardCleanQA = cafcore.qc.initialize_qc(
@@ -590,10 +641,12 @@ def standardize_cols(df):
 def get_standard_col_names():
     cols = [
         "HarvestYear",
+        "FieldId",
         "ID2",
         "SampleId",
         "Crop",
         "CropExists",
+        "HarvestDate",
         "BiomassDry",
         "GrainMassDry",
         "GrainTestWeight",
@@ -622,6 +675,7 @@ def get_standard_col_names():
 def get_standard_col_names_nonmeasure():
     cols = [
         "HarvestYear",
+        "FieldId",
         "ID2",
         "SampleId",
         "Crop",
