@@ -83,6 +83,22 @@ def parse_harvest_date(harvestDate, harvestYear):
 
     return result
 
+def parse_test_weight(row, largeTestWeightCol, smallTestWeightCol):
+    """Returns the small test weight if it's not null or the large test weight multiplied by 0.0705 if the small weight is null
+    """
+
+    small = row[smallTestWeightCol]
+    large = row[largeTestWeightCol]
+
+    result = None
+
+    if(pd.isna(small)):
+        if(not pd.isna(large)):
+            result = float(large) * 0.0705
+    else:
+        result = float(small)
+
+    return result
 
 def read_transform_hand_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harvestYear):
     """Loads the hand harvest DET for 2017 into a dataframe, formats it, and applies any changes specified in the quality assurance files
@@ -245,10 +261,12 @@ def read_transform_harvest01Det(dirPathToHarvestFile, dirPathToQAFile, harvestYe
             Crop = harvest["Total biomass bag barcode ID"].str.split("_", expand = True)[3],
             BiomassDry = harvest["Dried total biomass (g)"],
             GrainMassDry = harvest["Non-oven-dried grain (g)"],
-            GrainTestWeight = harvest.apply(lambda row: row[testWtLargeCol] * 0.0705 if row[testWtLargeCol] else row[testWtSmallCol], axis=1),
+            #GrainTestWeight = harvest.apply(lambda row: int(row[testWtLargeCol]) * 0.0705 if row[testWtLargeCol] else int(row[testWtSmallCol]), axis=1),
+            GrainTestWeight = harvest.apply(lambda row: parse_test_weight(row, testWtLargeCol, testWtSmallCol), axis = 1),
             #GrainTestWeight = harvest["Manual Test Weight: Large Kettle\n(large container, converted value in small container column) (grams) Conversion to lbs per Bu = 0.0705.  "] * 0.0705,
             CropExists = 1,
-            Comments = harvest["Notes"].astype(str) + "| " + harvest["Notes made by Ian Leslie"],
+            #Comments = harvest["Notes"].astype(str) + "| " + harvest["Notes made by Ian Leslie"],
+            Comments = harvest["Notes"],
             ProjectID = harvest["Project ID"])
     )
 
@@ -307,9 +325,12 @@ def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
             )
         )
 
-        nirs = nirs.append(nirParse, ignore_index = True, sort = True)
+        #nirs = nirs.append(nirParse, ignore_index = True, sort = True)
+        nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
 
     nirs = nirs[colNames]
+
+    nirs = nirs.drop_duplicates()
 
     nirsQA = cafcore.qc.initialize_qc(nirs, colNamesNotMeasure)
     nirsQA = cafcore.qc.quality_assurance(nirsQA, dirPathToQAFile, "Date_Time")
@@ -334,6 +355,59 @@ def read_transform_nir(dirPathToNirFiles, dirPathToQAFile, harvestYear):
             "WGlutDM_qcApplied": "GrainGluten_qcApplied",
             "WGlutDM_qcResult": "GrainGluten_qcResult",
             "WGlutDM_qcPhrase": "GrainGluten_qcPhrase"}))
+
+    return nirsQAClean
+
+def read_transform_nir_oilseed_lab(dirPathToNirFiles, dirPathToQAFile, harvestYear):
+    """Loads all NIR files into a dataframe, formats it, and makes quality assurance changes as specified
+    :rtype: DataFrame
+    """
+
+    filePaths = dirPathToNirFiles / "*.xlsx"
+    nirFiles = glob.glob(str(filePaths))
+
+    colNames = ["ProjectId", "ID2", "DryMatterContent", "OilContent", "ProteinContent"]
+    colNamesNotMeasure = ["ProjectId", "ID2", "IDCol"]
+
+    nirs = pd.DataFrame()
+
+    for nirFile in nirFiles:
+        nir = pd.read_excel(nirFile, skiprows=5, names=colNames)
+        
+        # Make sure this is a GP sample from CW or CE
+        #nirFilter = nir[(nir['Sample_ID'].str.upper().str.contains('GP')) & ((nir['Sample_ID'].str.upper().str.contains('CW')) | (nir['Sample_ID'].str.upper().str.contains('CE')))]
+        nirFilter = nir[(nir["ProjectId"].isin(["CE", "CW"]))]
+        nirParse = (
+            nirFilter
+                .assign(
+                    IDCol = nir["ProjectId"] + nir["ID2"].astype(str),
+                    MoistureContent = 100 - nir["DryMatterContent"])
+                .drop(columns = ["DryMatterContent"]))
+
+        #nirs = nirs.append(nirParse, ignore_index = True, sort = True)
+        nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
+
+    nirs = nirs.drop_duplicates()
+
+    nirsQA = cafcore.qc.initialize_qc(nirs, colNamesNotMeasure)
+    nirsQA = cafcore.qc.quality_assurance(nirsQA, dirPathToQAFile, "IDCol")
+    nirsQA = cafcore.qc.set_quality_assurance_applied(nirsQA, colNamesNotMeasure)
+
+    nirsQAClean = (nirsQA
+        .drop(columns = ["IDCol", "ProjectId"])
+        .rename(columns={
+            "ProteinContent": "GrainProtein", 
+            "ProteinContent_qcApplied": "GrainProtein_qcApplied",
+            "ProteinContent_qcResult": "GrainProtein_qcResult",
+            "ProteinContent_qcPhrase": "GrainProtein_qcPhrase",
+            "MoistureContent": "GrainMoisture", 
+            "MoistureContent_qcApplied": "GrainMoisture_qcApplied",
+            "MoistureContent_qcResult": "GrainMoisture_qcResult",
+            "MoistureContent_qcPhrase": "GrainMoisture_qcPhrase",
+            "OilContent": "GrainOil",
+            "OilContent_qcApplied": "GrainOil_qcApplied",
+            "OilContent_qcResult": "GrainOil_qcResult",
+            "OilContent_qcPhrase": "GrainOil_qcPhrase"}))
 
     return nirsQAClean
 
@@ -540,11 +614,14 @@ def process_quality_control(df, pathToParameterFiles, colsOmit = []):
 
     dfCopy = df.copy()
 
-    dfCopy = cafcore.qc.initialize_qc(dfCopy, colsOmit)
-    dfCopy = cafcore.qc.set_quality_assurance_applied(dfCopy)
-
     if is_there_duplicate_id2(dfCopy):
         raise Exception("Duplicated ID2 values found")
+    
+    if is_there_missing_id2(dfCopy, "FieldId"):
+        raise Exception("Not all ID2 values have an associated row")
+    
+    dfCopy = cafcore.qc.initialize_qc(dfCopy, colsOmit)
+    dfCopy = cafcore.qc.set_quality_assurance_applied(dfCopy)
 
     qcBounds = process_quality_control_point(
         dfCopy, 
@@ -566,6 +643,26 @@ def is_there_duplicate_id2(df) -> bool:
         return True
     else:
         return False
+
+def is_there_missing_id2(df, fieldIdCol) -> bool:
+    """Checks that all georeference points have a corresponding row (no missing data)
+    """
+
+    total_rows_expected = 619
+    ce_rows_expected = 369
+    cw_rows_expected = 250
+
+    if(df.shape[0] != total_rows_expected):
+        return True
+
+    if(df[df[fieldIdCol] == 'CE'].shape[0] != ce_rows_expected):
+        return True
+    
+    if(df[df[fieldIdCol] == 'CW'].shape[0] != cw_rows_expected):
+        return True
+    
+    return False
+    
 
     
 def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
@@ -654,6 +751,7 @@ def get_standard_col_names():
         "GrainProtein",
         "GrainStarch",
         "GrainGluten",
+        "GrainOil",
         "GrainCarbon",
         "Grain13C",
         "GrainNitrogen",
