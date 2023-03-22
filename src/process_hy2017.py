@@ -34,7 +34,7 @@ def main(dataPath, harvestDetFilename):
 
     df_final = common.standardize_cols(df_qc)
 
-    common.to_csv(df_final, hy, outputPath)
+    common.to_csv(df_final, hy, outputPath,2,2)
 
     print("done")
 
