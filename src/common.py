@@ -703,7 +703,7 @@ def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
     return result
 
 
-def to_csv(df, harvestYear, outputPath, processingLevel, accuracyLevel):
+def to_csv(df, harvestYear, outputPath, processingLevel = None, accuracyLevel = None):
     """Outputs the data as a csv file named hy{harvestYear}.csv
     """
     # TODO: Output version with QC columns scrubbed and append _P#A# to filename
@@ -713,7 +713,7 @@ def to_csv(df, harvestYear, outputPath, processingLevel, accuracyLevel):
     #caf_qc.sort_qc_columns(df, True).to_csv(filePath)
 
     caf_io.write_data_csv(
-        df,
+        df.sort_values(by='ID2'),
         (outputPath),
         ("hy" + str(harvestYear)),
         processingLevel,

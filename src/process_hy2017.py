@@ -4,7 +4,7 @@ import pandas as pd
 import sys
 
 def main(dataPath, harvestDetFilename):
-    colNotMeasure = ["HarvestYear", "ID2", "Crop", "SampleId", "Comments"]
+    colNotMeasure = ["HarvestYear", "FieldId", "ID2", "Crop", "SampleId", "HarvestDate", "Comments"]
     hy = 2017
     harvestedArea = 2.4384
 
