@@ -4,7 +4,7 @@ import pathlib
 import glob
 import datetime
 
-#https://github.com/cafltar/cafcore/releases/tag/v0.1.1
+#https://github.com/cafltar/cafcore/releases/tag/v0.1.3
 import cafcore.qc
 import cafcore.file_io
 
@@ -702,7 +702,7 @@ def to_csv(df, harvestYear, outputPath, processingLevel = None, accuracyLevel = 
     cafcore.file_io.write_data_csv(
         df.sort_values(by='ID2'),
         (outputPath),
-        ("hy" + str(harvestYear)),
+        ("hy" + str(harvestYear) + "_QCCodes"),
         processingLevel,
         accuracyLevel
     )
