@@ -691,7 +691,7 @@ def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
 
 
 def to_csv(df, harvestYear, outputPath, processingLevel = None, accuracyLevel = None):
-    """Outputs the data as a csv file named hy{harvestYear}.csv
+    """Outputs the data as a csv file named hy{harvestYear}_QCCodes_{P#A#}.csv
     """
     # TODO: Output version with QC columns scrubbed and append _P#A# to filename
     # TODO: Add current date to output filename
@@ -705,6 +705,15 @@ def to_csv(df, harvestYear, outputPath, processingLevel = None, accuracyLevel = 
         ("hy" + str(harvestYear) + "_QCCodes"),
         processingLevel,
         accuracyLevel
+    )
+
+def to_csv_agg(df, startHarvestYear, endHarvestYear, outputPath, processingLevel = None, accuracyLevel = None):
+    filename = "hy{}-hy{}".format(startHarvestYear, endHarvestYear)
+    cafcore.file_io.write_data_csv(
+        df.sort_values(by=['HarvestYear', 'ID2']),
+        outputPath,
+        filename,
+        processingLevel, accuracyLevel
     )
 
 def standardize_cols(df):
