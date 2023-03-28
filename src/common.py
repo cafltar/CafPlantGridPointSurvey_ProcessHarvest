@@ -629,10 +629,13 @@ def process_quality_control(df, pathToParameterFiles, colsOmit = []):
         dfCopy, 
         (pathToParameterFiles / "qcBounds.csv"),
         colsOmit)
+    
+    qcDataset = process_quality_control_dataset(
+        qcBounds,
+        (pathToParameterFiles / "normAndSpatialResultFlags.csv"),
+        colsOmit)
 
-    # TODO: Check data completeness
-
-    return qcBounds
+    return qcDataset
 
 def is_there_duplicate_id2(df) -> bool:
     """Checks if there are duplicated ID2 values in the provided dataframe
@@ -684,11 +687,89 @@ def process_quality_control_point(df, pathToParameterFile, colsOmit = []):
         for paramIndex, paramRow in qcPointParamsCrop.iterrows():
             dfCrop = cafcore.qc.process_qc_bounds_check(dfCrop, paramRow["FieldName"], paramRow["Lower"], paramRow["Upper"])
 
-        #result = result.append(dfCrop)
         result = pd.concat([result, dfCrop], axis=0, ignore_index=True)
 
     return result
 
+def process_quality_control_dataset(df, pathToParemeterFile, colsOmit = []):
+    """The processing code was written by Joaquin Casanova and is in a R script outside of this project. This is a "temp" workaround that loads in the results of the analysis.
+    """
+
+    dfCopy = df.copy()
+
+    qcDatasetFlagsResults = pd.read_csv(pathToParemeterFile, na_values = ["NA"])
+
+    # Get list of variable columns (strip off "NormFlag" and "SpatialFlag" then get unique) in the row
+    cols = list(qcDatasetFlagsResults.columns)
+    varCols = [c for c in cols if c not in colsOmit]
+    varCols = [c.replace("NormFlag", "") for c in varCols]
+    varCols = [c.replace("NormSpatialFlag", "") for c in varCols]
+    varCols = list(set(varCols))
+    #varCols = [c.strip("NormFlag").strip("SpatialFlag") for c in list(qcDatasetFlagsResults.columns)]
+
+    #dfCopy = dfCopy.apply(process_qc_dataset_row, qcDatasetFlags = qcDatasetFlagsResults, variableCols = varCols, axis=1)
+    for index, row in dfCopy.iterrows():
+        row = row.copy()
+        dfCopy.loc[index] = process_qc_dataset_row(row, qcDatasetFlagsResults, varCols)
+
+    return dfCopy
+
+
+def process_qc_dataset_row(row, qcDatasetFlags, variableCols):
+    normSuffix = "NormFlag"
+    spatialSuffix = "NormSpatialFlag"
+
+    year = row["HarvestYear"]
+    id2 = row["ID2"]
+
+    # Update qcApplied columns for all variableCols
+
+    # Check if matching results in result flag data
+    flags = qcDatasetFlags[(qcDatasetFlags["HarvestYear"] == year) & (qcDatasetFlags["ID2"] == id2)]
+
+    if(flags.shape[0] > 1):
+        raise Exception("Found more than one record for result flags")
+
+    # Go through each variable that was flagged and update qc columns
+    for col in variableCols:
+        normCol = col + normSuffix
+        spatialCol = col + spatialSuffix
+
+        appliedCol = col + "_qcApplied"
+        resultCol = col + "_qcResult"
+        reasonCol = col + "_qcPhrase"
+
+        currAppliedVal = row[appliedCol]
+
+        row[appliedCol] = cafcore.qc.update_qc_bitstring(currAppliedVal, "001000")
+
+        # If row of flag file is empty then data were not flagged so return
+        if(flags.shape[0] == 0):
+            continue
+
+        # Data was flagged, so update result and reason phrase columns
+        normVal = flags.iloc[0][normCol]
+        spatialVal = flags.iloc[0][spatialCol]
+
+        currResultVal = row[resultCol]
+        currReasonVal = row[reasonCol]
+
+        if normVal == True and spatialVal == True:
+            qcPhrase = "(Dataset) Value is an extreme outlier compared to similar data, value is an extreme outlier compared to a spatially interpolated value"
+            row[resultCol] = cafcore.qc.update_qc_bitstring(currResultVal, "001000")
+            row[reasonCol] = cafcore.qc.update_phrase(currReasonVal, qcPhrase)
+
+        elif normVal == True and spatialVal == False:
+            qcPhrase = "(Dataset) Value is an extreme outlier compared to similar data"
+            row[resultCol] = cafcore.qc.update_qc_bitstring(currResultVal, "001000")
+            row[reasonCol] = cafcore.qc.update_phrase(currReasonVal, qcPhrase)
+
+        elif normVal == False and spatialVal == True:
+            qcPhrase = "(Dataset) Value is an extreme outlier compared to a spatially interpolated value"
+            row[resultCol] = cafcore.qc.update_qc_bitstring(currResultVal, "001000")
+            row[reasonCol] = cafcore.qc.update_phrase(currReasonVal, qcPhrase)
+        
+    return row
 
 def to_csv(df, harvestYear, outputPath, processingLevel = None, accuracyLevel = None):
     """Outputs the data as a csv file named hy{harvestYear}_QCCodes_{P#A#}.csv
