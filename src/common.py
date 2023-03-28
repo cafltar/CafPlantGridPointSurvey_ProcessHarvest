@@ -630,10 +630,16 @@ def process_quality_control(df, pathToParameterFiles, colsOmit = []):
         (pathToParameterFiles / "qcBounds.csv"),
         colsOmit)
     
-    qcDataset = process_quality_control_dataset(
-        qcBounds,
-        (pathToParameterFiles / "normAndSpatialResultFlags.csv"),
-        colsOmit)
+    # Only 2017, 2018, and 2019 were QC'd with the spatial and normal checks
+    yearsDatasetQC = [2017, 2018, 2019]
+    hy = int(dfCopy["HarvestYear"].unique())
+    if hy in yearsDatasetQC:
+        qcDataset = process_quality_control_dataset(
+            qcBounds,
+            (pathToParameterFiles / "normAndSpatialResultFlags.csv"),
+            colsOmit)
+    else:
+        qcDataset = qcBounds
 
     return qcDataset
 
@@ -722,8 +728,6 @@ def process_qc_dataset_row(row, qcDatasetFlags, variableCols):
     year = row["HarvestYear"]
     id2 = row["ID2"]
 
-    # Update qcApplied columns for all variableCols
-
     # Check if matching results in result flag data
     flags = qcDatasetFlags[(qcDatasetFlags["HarvestYear"] == year) & (qcDatasetFlags["ID2"] == id2)]
 
@@ -788,12 +792,11 @@ def to_csv(df, harvestYear, outputPath, processingLevel = None, accuracyLevel = 
         accuracyLevel
     )
 
-def to_csv_agg(df, startHarvestYear, endHarvestYear, outputPath, processingLevel = None, accuracyLevel = None):
-    filename = "hy{}-hy{}".format(startHarvestYear, endHarvestYear)
+def to_csv_agg(df, nameTemplate, outputPath, processingLevel = None, accuracyLevel = None):
     cafcore.file_io.write_data_csv(
         df.sort_values(by=['HarvestYear', 'ID2']),
         outputPath,
-        filename,
+        nameTemplate,
         processingLevel, accuracyLevel
     )
 

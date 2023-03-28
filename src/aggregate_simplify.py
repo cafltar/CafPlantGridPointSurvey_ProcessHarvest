@@ -33,14 +33,17 @@ def main(dataPath):
 
     #   Remove qc cols
     qcCols = qcAppliedCols + qcResultCols + qcPhraseCols
-    hys = hys.drop(columns = qcCols)
+    hysSimple = hys.drop(columns = qcCols)
 
     # Write output: Name with start year and end year (derived from the file names?) and lowest P and A levels
     startYear = hys["HarvestYear"].min()
     endYear = hys["HarvestYear"].max()
 
-
-    common.to_csv_agg(hys, startYear, endYear, outputPath, 2, 0)
+    yearRange = "hy{}-hy{}".format(startYear, endYear)
+    qcName = yearRange + "_QCCodes"
+    
+    common.to_csv_agg(hys, qcName, outputPath, 2, 0)
+    common.to_csv_agg(hysSimple, yearRange, outputPath, 2, 0)
 
     print("done")
 
