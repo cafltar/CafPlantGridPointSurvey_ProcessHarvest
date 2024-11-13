@@ -1,0 +1,6 @@
+ID,Verb,Variable,NewVal,Comment,Reviewer
+2022-09-02 13:06:50,Delete,,,Removing duplicated sample and updating the other to be an average of the two that were run,
+2022-09-02 13:07:57,Update,ProtDM,9.626,Removing duplicated sample and updating the other to be an average of the two that were run,
+2022-09-02 13:07:57,Update,Moisture,9.823,Removing duplicated sample and updating the other to be an average of the two that were run,
+2022-09-02 13:07:57,Update,StarchDM,73.6,Removing duplicated sample and updating the other to be an average of the two that were run,
+2022-09-02 13:07:57,Update,WGlutDM,26.06,Removing duplicated sample and updating the other to be an average of the two that were run,

@@ -1,0 +1,4 @@
+ID,Verb,Variable,NewVal,Comment,Reviewer
+CE116_GP_2022_WW_Bio,Flag,BiomassAirDry,,Looks like a scanner or macro error caused biomass weight to not be recorded.,Ian leslie
+CE348_GP_2022_WW_Bio,Update,CropExists,0,"No crop, point in Ian Burke's plot",Ian leslie
+CE371_GP_2022_WW_Bio,Update,CropExists,0,"No crop, point in Ian Burke's plot",Ian leslie

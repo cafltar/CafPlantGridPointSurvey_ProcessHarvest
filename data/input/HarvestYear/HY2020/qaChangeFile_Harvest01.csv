@@ -1,0 +1,618 @@
+ID,Verb,Variable,NewVal,Comment,Reviewer
+CE1_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE2_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE14_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE15_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE16_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE17_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE18_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE19_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE21_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE23_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE25_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE35_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE36_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE38_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE39_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE40_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE42_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE43_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present ,Ian Leslie
+CE47_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE48_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE49_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE50_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE52_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE54_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE55_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE59_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE60_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE63_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE66_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE67_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE68_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE69_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE70_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE72_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE74_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE75_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE76_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE77_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE78_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE79_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE80_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE81_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE86_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE92_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE95_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE96_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE97_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE98_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE100_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE101_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE102_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE105_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE106_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE113_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE114_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE122_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE123_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE124_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE125_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE126_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE127_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE128_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE129_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE132_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE133_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE148_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE149_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE150_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE151_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE152_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE153_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE154_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE155_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE161_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE173_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE174_GP_2020_SW_Bio,Flag,GrainMassAirDry,,Estimated 40% Italian Rye grass,Ian Leslie
+CE175_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE176_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE177_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE178_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE179_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE180_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE181_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE186_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE188_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE189_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE196_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE199_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE200_GP_2020_SW_Bio,Flag,GrainMassAirDry,,90 % estimated Italian rye grass,Ian Leslie
+CE201_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE202_GP_2020_SW_Bio,Flag,GrainMassAirDry,,80 % estimated Italian rye grass present,Ian Leslie
+CE204_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE205_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE211_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE214_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE218_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE219_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE220_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE221_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE223_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE224_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE225_GP_2020_SW_Bio,Flag,GrainMassAirDry,,at least 10% estimated Italian Ryegrass present,Ian Leslie
+CE226_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE231_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE243_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE244_GP_2020_SW_Bio,Flag,GrainMassAirDry,,"At least 10 % estimated Italian rye grass present, wild oats",Ian Leslie
+CE245_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE247_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE248_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE249_GP_2020_SW_Bio,Flag,GrainMassAirDry,,50 % estimated Italian rye grass present,Ian Leslie
+CE250_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE265_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE266_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE267_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE268_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present/ wild oats,Ian Leslie
+CE269_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE271_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE272_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE273_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE274_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE276_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE285_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE289_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE290_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE291_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE292_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE297_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE298_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE299_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE300_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE304_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE310_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE311_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE312_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE313_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE314_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE315_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE323_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE324_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE325_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE329_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE330_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE332_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE333_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE334_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE335_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE336_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE337_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE338_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE349_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE352_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE354_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE357_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE358_GP_2020_SW_Bio,Flag,GrainMassAirDry,,"At least 10 % estimated Italian rye grass present, also some wild oats present",Ian Leslie
+CE360_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE372_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE375_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE376_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE380_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE381_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE394_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE395_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE396_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE398_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE399_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE400_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass presentv,Ian Leslie
+CE401_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE402_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE419_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE420_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE421_GP_2020_SW_Bio,Flag,GrainMassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE423_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE424_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW427_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW428_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW430_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated wild oats present,Ian Leslie
+CW432_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW433_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW434_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present/ wild oats,Ian Leslie
+CW435_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW436_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW438_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW439_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW441_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW442_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW443_GP_2020_SW_Bio,Flag,GrainMassAirDry,,90 % estimated Italian rye grass present,Ian Leslie
+CW444_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW447_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 20 % estimated Italian rye grass present,Ian Leslie
+CW448_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW450_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW451_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW454_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 50 % estimated Italian rye grass present,Ian Leslie
+CW455_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW456_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW461_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW462_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW463_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW464_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW466_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW471_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW473_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW474_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW475_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW476_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW477_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW478_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW479_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW482_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW483_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW486_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW487_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW489_GP_2020_SW_Bio,Flag,GrainMassAirDry,,Estimated at least 80% Italian rye grass present,Ian Leslie
+CW491_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW492_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW495_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW496_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW499_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW500_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW502_GP_2020_SW_Bio,Flag,GrainMassAirDry,,80 % estimated Italian rye grass present,Ian Leslie
+CW503_GP_2020_SW_Bio,Flag,GrainMassAirDry,,Estimated 90% Italian ryegrass,Ian Leslie
+CW504_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW505_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW509_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW514_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW515_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW516_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW517_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW518_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW522_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW523_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW524_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 50 % estimated Italian rye grass present,Ian Leslie
+CW529_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW530_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW531_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW532_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW535_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW537_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW538_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW545_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW546_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW547_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW548_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW550_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 90% estimated Italian rye grass present,Ian Leslie
+CW551_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW553_GP_2020_SW_Bio,Flag,GrainMassAirDry,,"At least 50% estimated Italian rye grass present, Cross Seeded",Ian Leslie
+CW554_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW557_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW558_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW559_GP_2020_SW_Bio,Flag,GrainMassAirDry,,"All Itailan rye, 1 meter square area sampled",Ian Leslie
+CW560_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW562_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW563_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW564_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW565_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW566_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW569_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW570_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW575_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW576_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW577_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW578_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW579_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW580_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW585_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW586_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW587_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW588_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW593_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW594_GP_2020_SW_Bio,Flag,GrainMassAirDry,,50 % estimated Italian rye grass present,Ian Leslie
+CW595_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW596_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW597_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW599_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW600_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW601_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW602_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW604_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW608_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW609_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW610_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW611_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW612_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW613_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW614_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 95 % estimated Italian rye grass present,Ian Leslie
+CW615_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW616_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW617_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW625_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW626_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW627_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Wild Oats present,Ian Leslie
+CW628_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW629_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW630_GP_2020_SW_Bio,Flag,GrainMassAirDry,,"85 % estimated Italian rye grass present, 1.0 square meter area sampled",Ian Leslie
+CW631_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW632_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW633_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW639_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW640_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW641_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW642_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW643_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW644_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW646_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW647_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW656_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW662_GP_2020_SW_Bio,Flag,GrainMassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE1_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE2_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE14_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE15_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE16_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE17_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE18_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE19_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE21_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE23_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE25_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE35_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE36_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE38_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE39_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE40_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE42_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE43_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present ,Ian Leslie
+CE47_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE48_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE49_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE50_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE52_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE54_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE55_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE59_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE60_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE63_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE66_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE67_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE68_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE69_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE70_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE72_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE74_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE75_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE76_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE77_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE78_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE79_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE80_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE81_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE86_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE92_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE95_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE96_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE97_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE98_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE100_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE101_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE102_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE105_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE106_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE113_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE114_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE122_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE123_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE124_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE125_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE126_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE127_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE128_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE129_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE132_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE133_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE148_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE149_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE150_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE151_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE152_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE153_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE154_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE155_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE161_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE173_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE174_GP_2020_SW_Bio,Flag,BiomassAirDry,,Estimated 40% Italian Rye grass,Ian Leslie
+CE175_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE176_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE177_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE178_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE179_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE180_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE181_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE186_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE188_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE189_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE196_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE199_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE200_GP_2020_SW_Bio,Flag,BiomassAirDry,,90 % estimated Italian rye grass,Ian Leslie
+CE201_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE202_GP_2020_SW_Bio,Flag,BiomassAirDry,,80 % estimated Italian rye grass present,Ian Leslie
+CE204_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE205_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE211_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE214_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE218_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE219_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE220_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE221_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE223_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE224_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE225_GP_2020_SW_Bio,Flag,BiomassAirDry,,at least 10% estimated Italian Ryegrass present,Ian Leslie
+CE226_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE231_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE243_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE244_GP_2020_SW_Bio,Flag,BiomassAirDry,,"At least 10 % estimated Italian rye grass present, wild oats",Ian Leslie
+CE245_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE247_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE248_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE249_GP_2020_SW_Bio,Flag,BiomassAirDry,,50 % estimated Italian rye grass present,Ian Leslie
+CE250_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE265_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE266_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE267_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE268_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present/ wild oats,Ian Leslie
+CE269_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE271_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE272_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE273_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE274_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE276_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE285_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE289_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE290_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE291_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE292_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE297_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE298_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE299_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE300_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE304_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE310_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE311_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE312_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE313_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE314_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE315_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE323_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE324_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE325_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE329_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE330_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE332_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE333_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE334_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE335_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE336_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE337_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE338_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE349_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE352_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE354_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE357_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE358_GP_2020_SW_Bio,Flag,BiomassAirDry,,"At least 10 % estimated Italian rye grass present, also some wild oats present",Ian Leslie
+CE360_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE372_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE375_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE376_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE380_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE381_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE394_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE395_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE396_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE398_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE399_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE400_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass presentv,Ian Leslie
+CE401_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE402_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE419_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE420_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE421_GP_2020_SW_Bio,Flag,BiomassAirDry,,10% estimated Italian Rye Grass present,Ian Leslie
+CE423_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE424_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW427_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW428_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW430_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated wild oats present,Ian Leslie
+CW432_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW433_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW434_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present/ wild oats,Ian Leslie
+CW435_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW436_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW438_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW439_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW441_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW442_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW443_GP_2020_SW_Bio,Flag,BiomassAirDry,,90 % estimated Italian rye grass present,Ian Leslie
+CW444_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW447_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 20 % estimated Italian rye grass present,Ian Leslie
+CW448_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW450_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW451_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW454_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 50 % estimated Italian rye grass present,Ian Leslie
+CW455_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW456_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW461_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW462_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW463_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW464_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW466_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW471_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW473_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW474_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW475_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW476_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW477_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW478_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW479_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW482_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW483_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW486_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW487_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW489_GP_2020_SW_Bio,Flag,BiomassAirDry,,Estimated at least 80% Italian rye grass present,Ian Leslie
+CW491_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW492_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW495_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW496_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW499_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW500_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW502_GP_2020_SW_Bio,Flag,BiomassAirDry,,80 % estimated Italian rye grass present,Ian Leslie
+CW503_GP_2020_SW_Bio,Flag,BiomassAirDry,,Estimated 90% Italian ryegrass,Ian Leslie
+CW504_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW505_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW509_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW514_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW515_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW516_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW517_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW518_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW522_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW523_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW524_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 50 % estimated Italian rye grass present,Ian Leslie
+CW529_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW530_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW531_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW532_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW535_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW537_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW538_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW545_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW546_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW547_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW548_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW550_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 90% estimated Italian rye grass present,Ian Leslie
+CW551_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW553_GP_2020_SW_Bio,Flag,BiomassAirDry,,"At least 50% estimated Italian rye grass present, Cross Seeded",Ian Leslie
+CW554_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW557_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW558_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW559_GP_2020_SW_Bio,Flag,BiomassAirDry,,"All Itailan rye, 1 meter square area sampled",Ian Leslie
+CW560_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW562_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW563_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW564_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW565_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW566_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW569_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW570_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW575_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW576_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW577_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW578_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW579_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW580_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW585_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW586_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW587_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW588_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW593_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW594_GP_2020_SW_Bio,Flag,BiomassAirDry,,50 % estimated Italian rye grass present,Ian Leslie
+CW595_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW596_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW597_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW599_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW600_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW601_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW602_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW604_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW608_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW609_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW610_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW611_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW612_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW613_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW614_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 95 % estimated Italian rye grass present,Ian Leslie
+CW615_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW616_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW617_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW625_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW626_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW627_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Wild Oats present,Ian Leslie
+CW628_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW629_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW630_GP_2020_SW_Bio,Flag,BiomassAirDry,,"85 % estimated Italian rye grass present, 1.0 square meter area sampled",Ian Leslie
+CW631_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW632_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW633_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW639_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW640_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW641_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW642_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW643_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW644_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW646_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW647_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW656_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CW662_GP_2020_SW_Bio,Flag,BiomassAirDry,,At least 10 % estimated Italian rye grass present,Ian Leslie
+CE210_GP_2020_SW_Bio,Update,CropExists,0,Suspect that now crop was present to sample at this location. Data in residue drying removal and weighing column likely pull down auto populate errors. ,Ian Leslie
+CW430_GP_2020_SW_Bio,Flag,BiomassAirDry,,Unknown why no dried biomass  weight was recorded. ,Ian Leslie
+CW479_GP_2020_SW_Bio,Flag,BiomassAirDry,,Unknown why no dried biomass  weight was recorded. ,Ian Leslie
+CW531_GP_2020_SW_Bio,Flag,BiomassAirDry,,Only 2 crop rows sampled.,Ian Leslie
+CW531_GP_2020_SW_Bio,Flag,GrainMassAirDry,,Only 2 crop rows sampled.,Ian Leslie
