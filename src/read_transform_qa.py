@@ -7,6 +7,7 @@ import sys
 
 from importlib.machinery import SourceFileLoader
 cafcore_qc_0_1_4 = SourceFileLoader('qc', '../../CafLogisticsCorePythonLibrary/CafCore/cafcore/qc.py').load_module()
+cafcore_cook_transform_0_1_4 = SourceFileLoader('cook_transform', '../../CafLogisticsCorePythonLibrary/CafCore/cafcore/cook_transform.py').load_module()
 #https://github.com/cafltar/cafcore/releases/tag/v0.1.3
 #import cafcore.qc
 #import cafcore.file_io
@@ -28,6 +29,7 @@ def hy2017(args):
     ea = process_ea_nsar_v1(path_ea, path_ea_qa, harvest_year)
 
     df = harvest.merge(ea, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
@@ -52,8 +54,8 @@ def hy2018(args):
         harvest_year)
 
     # Note: No NIR for garbs
-
     df = harvest.merge(ms, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
@@ -87,6 +89,7 @@ def hy2019(args):
         harvest_year)
 
     df = harvest.merge(nir, on = 'ID2', how = 'left').merge(ms, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
@@ -136,6 +139,7 @@ def hy2020(args):
         harvest_year)
 
     df = harvest.merge(nir, on = 'ID2', how = 'left').merge(ms, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
@@ -167,6 +171,7 @@ def hy2021(args):
         path_nir_qa)
 
     df = harvest.merge(nir, on = 'ID2', how = 'left').merge(ea, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
@@ -199,6 +204,7 @@ def hy2022(args):
         harvest_year)
 
     df = harvest.merge(nir, on = 'ID2', how = 'left').merge(ea, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
@@ -235,6 +241,7 @@ def hy2023(args):
     #    harvest_year)
 
     df = harvest
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
 
