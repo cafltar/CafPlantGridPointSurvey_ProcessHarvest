@@ -72,21 +72,19 @@ def calculate_qa(df, args):
         lambda row: row['GrainMassOvenDry_P1'] / harvest_areas[row['HarvestYear']], axis = 1)
     df_p2a0['BiomassAirDryPerArea_P2'] = df_p2a0.apply(
         lambda row: row['BiomassAirDry_P1'] / harvest_areas[row['HarvestYear']], axis = 1)
-    #df_p2a0['HarvestIndexAirDry_P2'] = df_p2a0.apply(
-    #    lambda row: row['GrainMassAirDry_P1'] / row['BiomassAirDry_P1'], axis = 1)
-    #df_p2a0['ResidueMassAirDryPerArea_P2'] = df_p2a0.apply(
-    #    lambda row: row['BiomassAirDryPerArea_P2'] - row['GrainYieldPerArea_P2']
-    #)
+    df_p2a0['ResidueMassAirDryPerArea_P2'] = df_p2a0.apply(
+        lambda row: (row['BiomassAirDry_P1'] - row['GrainMassAirDry_P1']) / harvest_areas[row['HarvestYear']], axis = 1)
 
-    p2_cols = ['GrainYieldAirDry_P2', 'GrainYieldOvenDry_P2', 'BiomassAirDryPerArea_P2']
+    p2_cols = ['GrainYieldAirDry_P2', 'GrainYieldOvenDry_P2', 'BiomassAirDryPerArea_P2', 'ResidueMassAirDryPerArea_P2']
     omit_cols = [col for col in df_p2a0.columns if col not in p2_cols]
     df_p2a1 = cafcore_qc_0_1_4.initialize_qc(df_p2a0, omit_cols)
     
     df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'GrainYieldAirDry_P2', ['GrainMassAirDry_P1'])
     df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'GrainYieldOvenDry_P2', ['GrainMassOvenDry_P1'])
     df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'BiomassAirDryPerArea_P2', ['BiomassAirDry_P1'])
+    df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'ResidueMassAirDryPerArea_P2', ['BiomassAirDry_P1', 'GrainMassAirDry_P1'])
 
-    return df_p2a1    
+    return df_p2a1
 
 def model(df, args):
     print('---- model ----')
@@ -133,8 +131,10 @@ def quality_control(df, args):
     # Do observation checks
     result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'GrainYieldAirDry_P2', 'GrainYieldOvenDry_P2')
     result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'GrainYieldAirDry_P2')
+    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'ResidueMassAirDryPerArea_P2')
     result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'GrainYieldAirDry_P2', 'BiomassAirDryPerArea_P2')
     result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'GrainYieldOvenDry_P2', 'GrainYieldAirDry_P2')
+    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'ResidueMassAirDryPerArea_P2', 'BiomassAirDryPerArea_P2')
 
     return result.sort_values(by=['HarvestYear', 'ID2'])
 
@@ -147,7 +147,7 @@ def output(df, processing_level, accuracy_level, args):
     df_trim_qc_p = cafcore_file_io_0_1_4.condense_processing_columns(df_trim_qc, processing_level, args['p_suffixes'])
 
     # Order the columns to make them look nice
-    non_qc_col_order = ['HarvestYear','FieldId','Crop','ID2','SampleId','Latitude','Longitude','QCCoverage','QCFlags','Comments','CropExists_P1','HarvestDate_P1','GrainMoisture_P1','GrainTestWeight_P1','GrainProtein_P1','GrainStarch_P1','GrainGluten_P1','GrainOil_P1','ResidueNitrogen_P1','ResidueCarbon_P1','GrainNitrogen_P1','GrainCarbon_P1','GrainYieldAirDry_P2','GrainYieldOvenDry_P2','BiomassAirDryPerArea_P2','CropExists','HarvestDate','BiomassAirDryPerArea','GrainYieldAirDry','GrainYieldOvenDry','GrainMoisture','GrainTestWeight','GrainProtein','GrainStarch','GrainGluten','GrainOil','ResidueNitrogen','ResidueCarbon','GrainNitrogen','GrainCarbon']
+    non_qc_col_order = ['HarvestYear','FieldId','Crop','ID2','SampleId','Latitude','Longitude','QCCoverage','QCFlags','Comments','CropExists_P1','HarvestDate_P1','GrainMoisture_P1','GrainTestWeight_P1','GrainProtein_P1','GrainStarch_P1','GrainGluten_P1','GrainOil_P1','ResidueNitrogen_P1','ResidueCarbon_P1','GrainNitrogen_P1','GrainCarbon_P1','GrainYieldAirDry_P2','GrainYieldOvenDry_P2','BiomassAirDryPerArea_P2','ResidueMassAirDryPerArea_P2','CropExists','HarvestDate','BiomassAirDryPerArea','ResidueMassAirDryPerArea','GrainYieldAirDry','GrainYieldOvenDry','GrainMoisture','GrainTestWeight','GrainProtein','GrainStarch','GrainGluten','GrainOil','ResidueNitrogen','ResidueCarbon','GrainNitrogen','GrainCarbon']
 
     ordered_cols = []
     for col in non_qc_col_order:
@@ -215,7 +215,11 @@ def main(args):
         'BiomassAirDryPerArea_P2': 'float64',
         'BiomassAirDryPerArea_P2_qcApplied': 'object',
         'BiomassAirDryPerArea_P2_qcResult': 'object',
-        'BiomassAirDryPerArea_P2_qcPhrase': 'object'
+        'BiomassAirDryPerArea_P2_qcPhrase': 'object',
+        'ResidueMassAirDryPerArea_P2': 'object',
+        'ResidueMassAirDryPerArea_P2_qcApplied': 'object',
+        'ResidueMassAirDryPerArea_P2_qcResult': 'object',
+        'ResidueMassAirDryPerArea_P2_qcPhrase': 'object'
     }
     
     output(pl.from_pandas(df_p2a3.astype(pandas_schema_p2)).sort(by = ['HarvestYear', 'ID2']), 2, 3, args)
