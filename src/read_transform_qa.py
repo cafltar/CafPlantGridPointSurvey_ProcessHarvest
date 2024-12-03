@@ -531,7 +531,11 @@ def process_ea_nsar_v1(dirPathToEAFiles, dirPathToQAFile, harvestYear):
                 ID2 = ea.apply(lambda row: core.parse_id2_from_sampleId(row['Sample'], harvestYear), axis = 1)
             )
 
-        eaAll = pd.concat([eaAll, ea], axis=0, ignore_index = True)
+        if eaAll.empty:
+            eaAll = ea
+        else:
+            if not ea.empty:
+                eaAll = pd.concat([eaAll, ea], axis=0, ignore_index = True)
 
     # Remove data that did not get an ID2 assigned (since it likely belongs to a different project)
     eaAll = eaAll.dropna(subset=['ID2'])
@@ -613,7 +617,12 @@ def process_ms_nsar_v1(dirPathToMSFiles, dirPathToQAFile, harvestYear):
             )
 
         #msAll = msAll.append(ms, ignore_index = True)
-        msAll = pd.concat([msAll, ms], axis = 0, ignore_index=True)
+
+        if msAll.empty:
+            msAll = ms
+        else:
+            if not ms.empty:
+                msAll = pd.concat([msAll, ms], axis = 0, ignore_index=True)
 
     # Assign ID2
     #msAll = msAll.assign(
@@ -698,7 +707,11 @@ def process_nir_infratec1241(dirPathToNirFiles, dirPathToQAFile, harvestYear):
         )
 
         #nirs = nirs.append(nirParse, ignore_index = True, sort = True)
-        nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
+        if nirs.empty:
+            nirs = nirParse
+        else:
+            if not nirParse.empty:
+                nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
 
     nirs = nirs[colNames]
 
@@ -756,8 +769,11 @@ def process_nir_oilseed_lab(dirPathToNirFiles, dirPathToQAFile):
                     MoistureContent = 100 - nir['DryMatterContent'])
                 .drop(columns = ['DryMatterContent']))
 
-        #nirs = nirs.append(nirParse, ignore_index = True, sort = True)
-        nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
+        if nirs.empty:
+            nirs = nirParse
+        else:
+            if not nirs.empty:
+                nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
 
     nirs = nirs.drop_duplicates()
 

@@ -4,13 +4,15 @@ import polars as pl
 import sys
 
 import read_transform_qa
+import calculate_qa
+import quality_control
 
 from importlib.machinery import SourceFileLoader
 cafcore_qc_0_1_4 = SourceFileLoader('qc', '../../CafLogisticsCorePythonLibrary/CafCore/cafcore/qc.py').load_module()
 cafcore_file_io_0_1_4 = SourceFileLoader('qc', '../../CafLogisticsCorePythonLibrary/CafCore/cafcore/file_io.py').load_module()
 
 def generate_p1a1(harvest_year, args):
-    print('---- read_transform_qa: ' + str(harvest_year) + ' ----')
+    print('Reading, transforming, and quality assurancing: ' + str(harvest_year))
 
     hy_df = pd.DataFrame([])
 
@@ -18,35 +20,35 @@ def generate_p1a1(harvest_year, args):
     if(harvest_year == 2017):
         hy_df = read_transform_qa.hy2017(args)
 
-    if(harvest_year == 2018):
+    elif(harvest_year == 2018):
         hy_df = read_transform_qa.hy2018(args)
-        
-        # Clean up non-standard columns
-        hy_df = hy_df.drop(hy_df.filter(regex='Residue13C').columns, axis=1)
-        hy_df = hy_df.drop(hy_df.filter(regex='Grain13C').columns, axis=1)
-
-    if(harvest_year == 2019):
+    elif(harvest_year == 2019):
         hy_df = read_transform_qa.hy2019(args)
-
-        # Clean up non-standard columns
-        hy_df = hy_df.drop(hy_df.filter(regex='Residue13C').columns, axis=1)
-        hy_df = hy_df.drop(hy_df.filter(regex='Grain13C').columns, axis=1)
-
-    if(harvest_year == 2020):
+    elif(harvest_year == 2020):
         hy_df = read_transform_qa.hy2020(args)
-
-        # Clean up non-standard columns
-        hy_df = hy_df.drop(hy_df.filter(regex='Residue13C').columns, axis=1)
-        hy_df = hy_df.drop(hy_df.filter(regex='Grain13C').columns, axis=1)
-    
-    if(harvest_year == 2021):
+    elif(harvest_year == 2021):
         hy_df = read_transform_qa.hy2021(args)
-    
-    if(harvest_year == 2022):
+    elif(harvest_year == 2022):
         hy_df = read_transform_qa.hy2022(args)
-    
-    if(harvest_year == 2023):
+    elif(harvest_year == 2023):
         hy_df = read_transform_qa.hy2023(args)
+    else:
+        print('WARNING: no function to process harvest year: ' + str(harvest_year))
+
+    # Assign processing col names
+    hy_df = cafcore_qc_0_1_4.add_processing_suffix(hy_df, args['metric_vars'], 1, True)
+
+    # Drop non-standard cols
+    extra_cols = [col for col in hy_df.columns if col not in list(args['pandas_schema_p1'].keys())]
+    hy_df = hy_df.drop(columns=extra_cols)
+
+    # Add standard cols if missing
+    missing_cols = [col for col in list(args['pandas_schema_p1'].keys()) if col not in hy_df.columns]
+    for missing_col in missing_cols:
+        hy_df[missing_col] = float('nan')
+
+    # Specify data types
+    hy_df = hy_df.astype(args['pandas_schema_p1'])
 
     # Confirm data are complete records (all observations)
     if len(hy_df['HarvestYear'].unique()) > 1:
@@ -55,91 +57,35 @@ def generate_p1a1(harvest_year, args):
         raise Exception('Dataset has different number of observations than expected')
     if set(hy_df['ID2'].unique()) != set(args['observation_ids']):
         raise Exception('Dataset has different observations than expected')
-    
+    if len(hy_df.columns) != len(args['pandas_schema_p1']):
+        print([col for col in hy_df.columns if col not in list(args['pandas_schema_p1'].keys())])
+        raise Exception('Dataset does not contain all expected columns')
     
     # Return results
     return hy_df
 
-def calculate_qa(df, args):
-    print('---- calculate ----')
-    df_p2a0 = df.copy()
+def generate_p2a1(df, args):
+    print('Calculating some values...')
+    p2a1 = calculate_qa.calculate_p2(df, args)
 
-    harvest_areas = args['harvest_areas']
+    return p2a1.sort_values(by=['HarvestYear', 'ID2'])
 
-    df_p2a0['GrainYieldAirDry_P2'] = df_p2a0.apply(
-        lambda row: row['GrainMassAirDry_P1'] / harvest_areas[row['HarvestYear']], axis = 1)
-    df_p2a0['GrainYieldOvenDry_P2'] = df_p2a0.apply(
-        lambda row: row['GrainMassOvenDry_P1'] / harvest_areas[row['HarvestYear']], axis = 1)
-    df_p2a0['BiomassAirDryPerArea_P2'] = df_p2a0.apply(
-        lambda row: row['BiomassAirDry_P1'] / harvest_areas[row['HarvestYear']], axis = 1)
-    df_p2a0['ResidueMassAirDryPerArea_P2'] = df_p2a0.apply(
-        lambda row: (row['BiomassAirDry_P1'] - row['GrainMassAirDry_P1']) / harvest_areas[row['HarvestYear']], axis = 1)
+def generate_p3a1(df, args):
+    print('Modeling some values...')
 
-    p2_cols = ['GrainYieldAirDry_P2', 'GrainYieldOvenDry_P2', 'BiomassAirDryPerArea_P2', 'ResidueMassAirDryPerArea_P2']
-    omit_cols = [col for col in df_p2a0.columns if col not in p2_cols]
-    df_p2a1 = cafcore_qc_0_1_4.initialize_qc(df_p2a0, omit_cols)
-    
-    df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'GrainYieldAirDry_P2', ['GrainMassAirDry_P1'])
-    df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'GrainYieldOvenDry_P2', ['GrainMassOvenDry_P1'])
-    df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'BiomassAirDryPerArea_P2', ['BiomassAirDry_P1'])
-    df_p2a1 = cafcore_qc_0_1_4.quality_assurance_calculated(df_p2a1, 'ResidueMassAirDryPerArea_P2', ['BiomassAirDry_P1', 'GrainMassAirDry_P1'])
+def generate_p2a3(df, args):
+    print('Doing quality control...')
 
-    return df_p2a1
-
-def model(df, args):
-    print('---- model ----')
-
-def quality_control(df, args):
-    print('---- qc ----')
-
-    # TODO: Move this into a function that takes a df and a path to qc check file
-    #result = df.copy()
-
-    # Make sure we're not gaining any rows
-    rows_original = df.shape[0]
-
-    # Load file with bounds checks
-    qc_point_params = pd.read_csv(args['path_qc_bounds_p2']).dropna(subset=['Lower', 'Upper'])
-
-    # Get unique crops in df, filer df and params for each unique crop, merge them to new df
-    crops_in_data = df['Crop'].unique()
-
-    result = pd.DataFrame()
-    
-    for crop in crops_in_data:
-        # Some Crops have values of None, so handle that with generic bounds
-        if crop == None:
-            df_crop = df[df['Crop'].isna()]
-            qc_point_params_crop = qc_point_params[qc_point_params['Crop'] == 'Generic']
-        else:
-            df_crop = df[df['Crop'] == crop]
-            qc_point_params_crop = qc_point_params[qc_point_params['Crop'] == crop]
-
-        #qcPointParamsCrop = qcPointParams[qcPointParams["Crop"] == crop]
-        #dfCrop = df_result[df_result["Crop"] == crop]
-
-        for paramIndex, param_row in qc_point_params_crop.iterrows():
-            df_crop = cafcore_qc_0_1_4.process_qc_bounds_check(df_crop, param_row['FieldName'], param_row['Lower'], param_row['Upper'])
-
-        result = pd.concat([result, df_crop], axis=0, ignore_index=True)
-
-    rows_result = result.shape[0]
-
-    if rows_original != rows_result:
-        raise Exception("Resultant dataframe is different size than original")
+    # Do point checks
+    p2a2 = quality_control.qc_points(df, args['path_qc_bounds_p2'])    
     
     # Do observation checks
-    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'GrainYieldAirDry_P2', 'GrainYieldOvenDry_P2')
-    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'GrainYieldAirDry_P2')
-    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'ResidueMassAirDryPerArea_P2')
-    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'GrainYieldAirDry_P2', 'BiomassAirDryPerArea_P2')
-    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'GrainYieldOvenDry_P2', 'GrainYieldAirDry_P2')
-    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'ResidueMassAirDryPerArea_P2', 'BiomassAirDryPerArea_P2')
-
-    return result.sort_values(by=['HarvestYear', 'ID2'])
+    p2a3 = quality_control.qc_observation(p2a2)
+    
+    return p2a3.sort_values(by=['HarvestYear', 'ID2'])
 
 def output(df, processing_level, accuracy_level, args):
-    print('---- output ----')
+    print('Writing output...')
     df_trim = cafcore_file_io_0_1_4.prune_columns_outside_p_level(df, processing_level, args['p_suffixes'], args['qc_suffixes'])
     
     df_trim_qc = cafcore_file_io_0_1_4.append_qc_summary_cols(df_trim, args['dimension_vars'], args['index_cols'], {'HarvestYear': pl.Int64, 'ID2': pl.Int64})
@@ -169,12 +115,7 @@ def output(df, processing_level, accuracy_level, args):
         args['p_suffixes'], 
         args['qc_suffixes'])
 
-
-
 def main(args):
-    print('---- main ----')
-
-    # TODO: I may want to define column names and dtypes here
     # Generate p1a1
     df_p1a1 = pd.DataFrame([])
 
@@ -184,49 +125,22 @@ def main(args):
         if df_p1a1.empty:
             df_p1a1 = hy_df
         else:
-            df_p1a1 = pd.concat([df_p1a1, hy_df], ignore_index = True)
+            if not hy_df.empty:
+                df_p1a1 = pd.concat([df_p1a1, hy_df], ignore_index = True)
 
     if not cafcore_qc_0_1_4.ensure_columns(df_p1a1, args['dimension_vars'], args['metric_vars'], True):
         raise Exception('Dataset columns are not formatted correctly')
-    
-    # Don't bother generating a P1 dataset for now
-    # But do label columns as P1 in anticipation to P2
-    df_p1a1 = cafcore_qc_0_1_4.add_processing_suffix(df_p1a1, args['metric_vars'], 1, True)
-    df_p1a1 = df_p1a1.astype(args['pandas_schema_p1'])
 
     # Generate p2a1
-    df_p2a1 = calculate_qa(df_p1a1, args)
+    df_p2a1 = generate_p2a1(df_p1a1, args)
 
     # Generate p2a3
-    df_p2a3 = quality_control(df_p2a1, args)
+    df_p2a3 = generate_p2a3(df_p2a1, args)
 
-    # Convert to polars
-    import polars as pl
+    # Convert to polars for output
+    output(pl.from_pandas(df_p2a3.astype(args['pandas_schema_p2'])).sort(by = ['HarvestYear', 'ID2']), 2, 3, args)    
 
-    pandas_schema_p2 = args['pandas_schema_p1'] | {
-        'GrainYieldAirDry_P2': 'float64',
-        'GrainYieldAirDry_P2_qcApplied': 'object',
-        'GrainYieldAirDry_P2_qcResult': 'object',
-        'GrainYieldAirDry_P2_qcPhrase': 'object',
-        'GrainYieldOvenDry_P2': 'float64',
-        'GrainYieldOvenDry_P2_qcApplied': 'object',
-        'GrainYieldOvenDry_P2_qcResult': 'object',
-        'GrainYieldOvenDry_P2_qcPhrase': 'object',
-        'BiomassAirDryPerArea_P2': 'float64',
-        'BiomassAirDryPerArea_P2_qcApplied': 'object',
-        'BiomassAirDryPerArea_P2_qcResult': 'object',
-        'BiomassAirDryPerArea_P2_qcPhrase': 'object',
-        'ResidueMassAirDryPerArea_P2': 'object',
-        'ResidueMassAirDryPerArea_P2_qcApplied': 'object',
-        'ResidueMassAirDryPerArea_P2_qcResult': 'object',
-        'ResidueMassAirDryPerArea_P2_qcPhrase': 'object'
-    }
-    
-    output(pl.from_pandas(df_p2a3.astype(pandas_schema_p2)).sort(by = ['HarvestYear', 'ID2']), 2, 3, args)
-    #output(pl.from_pandas(df_p2a1), 2, 1, args)
-    
-
-    print(df_p2a1)
+    print('...Done')
 
 if __name__ == "__main__":
     path_data = pathlib.Path.cwd() / 'data'
@@ -240,7 +154,7 @@ if __name__ == "__main__":
         'path_output': path_output,
         'path_qc_bounds_p2': (path_input / 'qcBounds_p2.csv'),
         'harvest_years': [2017, 2018, 2019, 2020, 2021, 2022, 2023],
-        #'harvest_years': [2017, 2020, 2021],
+        #'harvest_years': [2018, 2019, 2021],
         'dimension_vars': ['HarvestYear', 'FieldId', 'ID2', 'SampleId', 'Latitude', 'Longitude', 'Crop', 'Comments'],
         'metric_vars': ['HarvestDate', 'BiomassAirDry', 'GrainMassAirDry', 'GrainMassOvenDry', 'GrainTestWeight', 'CropExists', 'GrainMoisture', 'GrainGluten', 'GrainStarch', 'GrainOil', 'GrainProtein', 'GrainNitrogen', 'GrainCarbon', 'ResidueNitrogen', 'ResidueCarbon'],
         'index_cols': ['HarvestYear', 'ID2'],
@@ -269,8 +183,8 @@ if __name__ == "__main__":
             'CropExists_P1': 'int64',
             'HarvestDate_P1': 'datetime64[ns]',
             'BiomassAirDry_P1': 'float64',
-            'GrainMassAirDry_P1': 'object',
-            'GrainMassOvenDry_P1': 'object',
+            'GrainMassAirDry_P1': 'float64',
+            'GrainMassOvenDry_P1': 'float64',
             'GrainTestWeight_P1': 'float64',
             'HarvestDate_P1_qcApplied': 'object',
             'HarvestDate_P1_qcResult': 'object',
@@ -329,5 +243,23 @@ if __name__ == "__main__":
         }
     }
     args['file_base_name'] = 'CookHandHarvest_HY' + str(min(args['harvest_years'])) + '-HY' + str(max(args['harvest_years']))
+    args['pandas_schema_p2'] = args['pandas_schema_p1'] | {
+        'GrainYieldAirDry_P2': 'float64',
+        'GrainYieldAirDry_P2_qcApplied': 'object',
+        'GrainYieldAirDry_P2_qcResult': 'object',
+        'GrainYieldAirDry_P2_qcPhrase': 'object',
+        'GrainYieldOvenDry_P2': 'float64',
+        'GrainYieldOvenDry_P2_qcApplied': 'object',
+        'GrainYieldOvenDry_P2_qcResult': 'object',
+        'GrainYieldOvenDry_P2_qcPhrase': 'object',
+        'BiomassAirDryPerArea_P2': 'float64',
+        'BiomassAirDryPerArea_P2_qcApplied': 'object',
+        'BiomassAirDryPerArea_P2_qcResult': 'object',
+        'BiomassAirDryPerArea_P2_qcPhrase': 'object',
+        'ResidueMassAirDryPerArea_P2': 'object',
+        'ResidueMassAirDryPerArea_P2_qcApplied': 'object',
+        'ResidueMassAirDryPerArea_P2_qcResult': 'object',
+        'ResidueMassAirDryPerArea_P2_qcPhrase': 'object'
+    }
 
     main(args)
