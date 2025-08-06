@@ -44,11 +44,11 @@ def qc_observation(df):
 
     result = df.copy()
 
-    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'GrainYieldAirDry_P2', 'GrainYieldOvenDry_P2')
-    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'GrainYieldAirDry_P2')
+    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'SeedYieldAirDry_P2', 'SeedYieldOvenDry_P2')
+    result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'SeedYieldAirDry_P2')
     result = cafcore_qc_0_1_4.process_qc_greater_than_check(result, 'BiomassAirDryPerArea_P2', 'ResidueMassAirDryPerArea_P2')
-    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'GrainYieldAirDry_P2', 'BiomassAirDryPerArea_P2')
-    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'GrainYieldOvenDry_P2', 'GrainYieldAirDry_P2')
+    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'SeedYieldAirDry_P2', 'BiomassAirDryPerArea_P2')
+    result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'SeedYieldOvenDry_P2', 'SeedYieldAirDry_P2')
     result = cafcore_qc_0_1_4.process_qc_less_than_check(result, 'ResidueMassAirDryPerArea_P2', 'BiomassAirDryPerArea_P2')
 
     return result

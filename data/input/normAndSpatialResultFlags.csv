@@ -1,4 +1,4 @@
-ID2,HarvestYear,Crop,GrainYieldDryPerAreaNormFlag,GrainYieldDryPerAreaNormSpatialFlag,GrainProteinNormFlag,GrainProteinNormSpatialFlag,GrainCarbonNormFlag,GrainCarbonNormSpatialFlag,GrainNitrogenNormFlag,GrainNitrogenNormSpatialFlag,ResidueCarbonNormFlag,ResidueCarbonNormSpatialFlag,ResidueNitrogenNormFlag,ResidueNitrogenNormSpatialFlag
+ID2,HarvestYear,Crop,SeedYieldDryPerAreaNormFlag,SeedYieldDryPerAreaNormSpatialFlag,SeedProteinNormFlag,SeedProteinNormSpatialFlag,SeedCarbonNormFlag,SeedCarbonNormSpatialFlag,SeedNitrogenNormFlag,SeedNitrogenNormSpatialFlag,ResidueCarbonNormFlag,ResidueCarbonNormSpatialFlag,ResidueNitrogenNormFlag,ResidueNitrogenNormSpatialFlag
 423,2005,SW,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,NA,NA,NA,NA
 424,2008,SW,TRUE,FALSE,FALSE,FALSE,NA,NA,FALSE,FALSE,NA,NA,NA,NA
 421,2003,WW,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,NA,NA,NA,NA

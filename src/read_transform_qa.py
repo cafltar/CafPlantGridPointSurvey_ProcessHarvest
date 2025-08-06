@@ -124,7 +124,7 @@ def hy2020(args):
     # Check that rows match then merge
     if(len(harvest['SampleId'].unique()) == len(harvest_reweigh['SampleId'].unique())):
         # Drop GrainMassOvenDry from original and replace with reweigh
-        cols = ['GrainMassOvenDry', 'GrainMassOvenDry_qcApplied', 'GrainMassOvenDry_qcResult', 'GrainMassOvenDry_qcPhrase']
+        cols = ['SeedMassOvenDry', 'SeedMassOvenDry_qcApplied', 'SeedMassOvenDry_qcResult', 'SeedMassOvenDry_qcPhrase']
         harvest_reweigh_prune = harvest_reweigh[(cols + ['SampleId'])]
         harvest = harvest.drop(cols, axis=1).merge(harvest_reweigh_prune, on = 'SampleId', how = 'left')
 
@@ -240,6 +240,7 @@ def hy2023(args):
     #    path_nir_qa,
     #    harvest_year)
 
+
     df = harvest
     df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
@@ -268,16 +269,16 @@ def process_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harvestYear, arg
             Crop = harvest['Total Biomass Barcode ID'].str.split('_', expand = True)[2],
             HarvestDate = None,
             BiomassAirDry = harvest['Dried Total Biomass mass + bag(g) + bags inside'] - harvest['Average Dried total biomass bag + empty grain bag & empty residue bag inside mass (g)'],
-            GrainMassAirDry = np.where(
+            SeedMassAirDry = np.where(
                 (pd.isnull(harvest['Non-Oven dried grain mass (g) Reweighed after being sieved'])),  
                 (harvest['Non-Oven dried grain mass (g)'] - harvest['Average Non-Oven dried grain bag mass (g)']),
                 (harvest['Non-Oven dried grain mass (g) Reweighed after being sieved'] - harvest['Average Non-Oven dried grain bag mass (g)'])),
-            GrainMassOvenDry = harvest['Oven dried grain mass (g)'] - harvest['Average Non-Oven dried grain bag mass (g)'],
-            GrainMoisture = harvest['Moisture'],
-            GrainProtein = harvest['Protein'],
-            GrainStarch = harvest['Starch'],
-            GrainGluten = harvest['WGlutDM'],
-            GrainTestWeight = harvest['Test Weight\n(Manual, small container if no # in large container column)'],
+            SeedMassOvenDry = harvest['Oven dried grain mass (g)'] - harvest['Average Non-Oven dried grain bag mass (g)'],
+            SeedMoisture = harvest['Moisture'],
+            SeedProtein = harvest['Protein'],
+            SeedStarch = harvest['Starch'],
+            SeedGluten = harvest['WGlutDM'],
+            SeedTestWeight = harvest['Test Weight\n(Manual, small container if no # in large container column)'],
             CropExists = 1,
             Comments = harvest['Notes and comments by Ian Leslie October 2019']
         )
@@ -291,13 +292,13 @@ def process_harvest_2017(dirPathToHarvestFile, dirPathToQAFile, harvestYear, arg
         'Crop',
         'HarvestDate',
         'BiomassAirDry',
-        'GrainMassAirDry',
-        'GrainMassOvenDry',
-        'GrainMoisture',
-        'GrainProtein',
-        'GrainStarch',
-        'GrainGluten',
-        'GrainTestWeight',
+        'SeedMassAirDry',
+        'SeedMassOvenDry',
+        'SeedMoisture',
+        'SeedProtein',
+        'SeedStarch',
+        'SeedGluten',
+        'SeedTestWeight',
         'CropExists',
         'Comments']
 
@@ -342,8 +343,8 @@ def process_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harvestYear, arg
             Crop = harvest['total biomass bag barcode ID'].str.split('_', expand = True)[2],
             HarvestDate = harvest.apply(lambda row: core.parse_harvest_date(row['date total biomass collected'], harvestYear), axis=1),
             BiomassAirDry = harvest['dried total biomass mass + bag + residue bag + grain bag (g)'] - harvest['average dried empty total biomass bag +  grain bag + residue bag  (g)'],
-            GrainMassAirDry = harvest['non-oven dried grain mass + bag (g)'] - harvest['average empty dried grain bag mass (g)'],
-            GrainMassOvenDry = None,
+            SeedMassAirDry = harvest['non-oven dried grain mass + bag (g)'] - harvest['average empty dried grain bag mass (g)'],
+            SeedMassOvenDry = None,
             CropExists = 1,
             Comments = harvest['notes'].astype(str) + '| ' + harvest['Notes by Ian Leslie 10/22/2019'],
             AreaOfInterestID2 = harvest['total biomass bag barcode ID'].str.split('_', expand = True)[0]            
@@ -359,8 +360,8 @@ def process_harvest_2018(dirPathToHarvestFile, dirPathToQAFile, harvestYear, arg
         'Crop',
         'HarvestDate',
         'BiomassAirDry',
-        'GrainMassAirDry',
-        'GrainMassOvenDry',
+        'SeedMassAirDry',
+        'SeedMassOvenDry',
         'CropExists',
         'Comments']
 
@@ -409,11 +410,11 @@ def process_harvest01(dirPathToHarvestFile, dirPathToQAFile, harvestYear, args):
             HarvestDate = harvest.apply(lambda row: core.parse_harvest_date(row['Date total biomass collected (g)'], harvestYear), axis=1),
             Crop = harvest['Total biomass bag barcode ID'].str.split('_', expand = True)[3],
             BiomassAirDry = harvest.apply(lambda row: core.parse_harvest01_biomass(row, 'Dried total biomass mass + biomass bag + residue bag + grain bag (g)',  '2nd dried total biomass bag + biomass bag if required for same sample location (g)', 'Average dried empty total biomass bag +  grain bag + residue bag  (g)', 'Average dried empty total biomass bag (g)'), axis = 1),
-            GrainMassAirDry = harvest['Non-oven-dried grain mass + bag (g)'] - harvest['Average empty dried grain bag mass (g)'],
-            GrainMassOvenDry = harvest['Oven-dried grain mass + bag (g)'] - harvest['Average empty dried grain bag mass (g)'],
-            #GrainTestWeight = harvest.apply(lambda row: int(row[testWtLargeCol]) * 0.0705 if row[testWtLargeCol] else int(row[testWtSmallCol]), axis=1),
-            GrainTestWeight = harvest.apply(lambda row: core.parse_test_weight(row, testWtLargeCol, testWtSmallCol), axis = 1),
-            #GrainTestWeight = harvest['Manual Test Weight: Large Kettle\n(large container, converted value in small container column) (grams) Conversion to lbs per Bu = 0.0705.  '] * 0.0705,
+            SeedMassAirDry = harvest['Non-oven-dried grain mass + bag (g)'] - harvest['Average empty dried grain bag mass (g)'],
+            SeedMassOvenDry = harvest['Oven-dried grain mass + bag (g)'] - harvest['Average empty dried grain bag mass (g)'],
+            #SeedTestWeight = harvest.apply(lambda row: int(row[testWtLargeCol]) * 0.0705 if row[testWtLargeCol] else int(row[testWtSmallCol]), axis=1),
+            SeedTestWeight = harvest.apply(lambda row: core.parse_test_weight(row, testWtLargeCol, testWtSmallCol), axis = 1),
+            #SeedTestWeight = harvest['Manual Test Weight: Large Kettle\n(large container, converted value in small container column) (grams) Conversion to lbs per Bu = 0.0705.  '] * 0.0705,
             CropExists = 1,
             #Comments = harvest['Notes'].astype(str) + '| ' + harvest['Notes made by Ian Leslie'],
             Comments = harvest['Notes'],
@@ -428,9 +429,9 @@ def process_harvest01(dirPathToHarvestFile, dirPathToQAFile, harvestYear, args):
         'Crop',
         'HarvestDate',
         'BiomassAirDry',
-        'GrainMassAirDry',
-        'GrainMassOvenDry',
-        'GrainTestWeight',
+        'SeedMassAirDry',
+        'SeedMassOvenDry',
+        'SeedTestWeight',
         'CropExists',
         'Comments']
 
@@ -474,7 +475,7 @@ def process_harvest01_grainreweigh(dirPathToHarvestFile, dirPathToQAFile, harves
             SampleId = harvest['Total biomass bag barcode ID'],
             HarvestDate = harvest.apply(lambda row: core.parse_harvest_date(row['Date total biomass collected (g)'], harvestYear), axis=1),
             Crop = harvest['Total biomass bag barcode ID'].str.split('_', expand = True)[3],
-            GrainMassOvenDry = harvest['Oven-dried grain mass + bag (g)'] - harvest['Average empty dried grain bag mass (g)'],
+            SeedMassOvenDry = harvest['Oven-dried grain mass + bag (g)'] - harvest['Average empty dried grain bag mass (g)'],
             Comments = harvest['Notes'],
             ProjectID = harvest['Project ID'])
     )
@@ -486,7 +487,7 @@ def process_harvest01_grainreweigh(dirPathToHarvestFile, dirPathToQAFile, harves
         'SampleId',
         'Crop',
         'HarvestDate',
-        'GrainMassOvenDry',
+        'SeedMassOvenDry',
         'Comments']
 
     harvestStandardClean = harvestStandard[colNames]
@@ -546,20 +547,20 @@ def process_ea_nsar_v1(dirPathToEAFiles, dirPathToQAFile, harvestYear):
     eaAllQA = cafcore_qc_0_1_4.set_quality_assurance_applied(eaAllQA,colNamesNotMeasure)
 
     # Split dataset into grain analysis and residue analysis
-    eaAllQAGrain = eaAllQA[eaAllQA['Sample'].str.contains('_GR_|_MGR_|_FMGR_|_FMGR', na = False, case = False)]
+    eaAllQASeed = eaAllQA[eaAllQA['Sample'].str.contains('_GR_|_MGR_|_FMGR_|_FMGR', na = False, case = False)]
     eaAllQAResidue = eaAllQA[eaAllQA['Sample'].str.contains('_RES_|_MRES_|_FMRES_|_BIO|_FMRES', na = False, case = False)]
 
     # Standardize column names
-    eaAllQAGrainClean = (eaAllQAGrain
+    eaAllQASeedClean = (eaAllQASeed
         .rename(columns = {
-            'WeightCarbon': 'GrainCarbon',
-            'WeightCarbon_qcApplied': 'GrainCarbon_qcApplied',
-            'WeightCarbon_qcResult': 'GrainCarbon_qcResult',
-            'WeightCarbon_qcPhrase': 'GrainCarbon_qcPhrase',
-            'WeightNitrogen': 'GrainNitrogen',
-            'WeightNitrogen_qcApplied': 'GrainNitrogen_qcApplied',
-            'WeightNitrogen_qcResult': 'GrainNitrogen_qcResult',
-            'WeightNitrogen_qcPhrase': 'GrainNitrogen_qcPhrase',
+            'WeightCarbon': 'SeedCarbon',
+            'WeightCarbon_qcApplied': 'SeedCarbon_qcApplied',
+            'WeightCarbon_qcResult': 'SeedCarbon_qcResult',
+            'WeightCarbon_qcPhrase': 'SeedCarbon_qcPhrase',
+            'WeightNitrogen': 'SeedNitrogen',
+            'WeightNitrogen_qcApplied': 'SeedNitrogen_qcApplied',
+            'WeightNitrogen_qcResult': 'SeedNitrogen_qcResult',
+            'WeightNitrogen_qcPhrase': 'SeedNitrogen_qcPhrase',
         })
         .drop(columns = ['LabId', 'Sample', 'Notes']))
 
@@ -577,12 +578,12 @@ def process_ea_nsar_v1(dirPathToEAFiles, dirPathToQAFile, harvestYear):
         .drop(columns = ['LabId', 'Sample', 'Notes']))
     
     # Deal with case that results are only residue, only grain, or both
-    if len(eaAllQAGrainClean) > 0 and len(eaAllQAResidueClean) == 0:
-        return eaAllQAGrainClean.merge(eaAllQAResidueClean, on = 'ID2', how = 'left')
-    elif len(eaAllQAGrainClean) == 0 and len(eaAllQAResidueClean) > 0:
-        return eaAllQAResidueClean.merge(eaAllQAGrainClean, on = 'ID2', how = 'left')
+    if len(eaAllQASeedClean) > 0 and len(eaAllQAResidueClean) == 0:
+        return eaAllQASeedClean.merge(eaAllQAResidueClean, on = 'ID2', how = 'left')
+    elif len(eaAllQASeedClean) == 0 and len(eaAllQAResidueClean) > 0:
+        return eaAllQAResidueClean.merge(eaAllQASeedClean, on = 'ID2', how = 'left')
     else:
-        return eaAllQAGrainClean.merge(eaAllQAResidueClean, on = 'ID2', how = 'left')
+        return eaAllQASeedClean.merge(eaAllQAResidueClean, on = 'ID2', how = 'left')
     
 def process_ms_nsar_v1(dirPathToMSFiles, dirPathToQAFile, harvestYear):
     '''Loads all MS files into a dataframe, formats it, and makes quality assurance changes as specified
@@ -636,24 +637,24 @@ def process_ms_nsar_v1(dirPathToMSFiles, dirPathToQAFile, harvestYear):
     msAllQA = cafcore_qc_0_1_4.set_quality_assurance_applied(msAllQA,colNamesNotMeasure)
 
     # Split dataset into grain analysis and residue analysis
-    msAllQAGrain = msAllQA[msAllQA['Sample'].str.contains('_Gr_|_MGr_|_FMGr_', na = False)]
+    msAllQASeed = msAllQA[msAllQA['Sample'].str.contains('_Gr_|_MGr_|_FMGr_', na = False)]
     msAllQAResidue = msAllQA[msAllQA['Sample'].str.contains('_Res_|_MRes_|_FMRes_|_FMRes', na = False)]
 
     # Standardize column names
-    msAllQAGrainClean = (msAllQAGrain
+    msAllQASeedClean = (msAllQASeed
         .rename(columns = {
-            'Delta13C': 'Grain13C',
-            'Delta13C_qcApplied': 'Grain13C_qcApplied',
-            'Delta13C_qcResult': 'Grain13C_qcResult',
-            'Delta13C_qcPhrase': 'Grain13C_qcPhrase',
-            'TotalC': 'GrainCarbon',
-            'TotalC_qcApplied': 'GrainCarbon_qcApplied',
-            'TotalC_qcResult': 'GrainCarbon_qcResult',
-            'TotalC_qcPhrase': 'GrainCarbon_qcPhrase',
-            'TotalN': 'GrainNitrogen',
-            'TotalN_qcApplied': 'GrainNitrogen_qcApplied',
-            'TotalN_qcResult': 'GrainNitrogen_qcResult',
-            'TotalN_qcPhrase': 'GrainNitrogen_qcPhrase'
+            'Delta13C': 'Seed13C',
+            'Delta13C_qcApplied': 'Seed13C_qcApplied',
+            'Delta13C_qcResult': 'Seed13C_qcResult',
+            'Delta13C_qcPhrase': 'Seed13C_qcPhrase',
+            'TotalC': 'SeedCarbon',
+            'TotalC_qcApplied': 'SeedCarbon_qcApplied',
+            'TotalC_qcResult': 'SeedCarbon_qcResult',
+            'TotalC_qcPhrase': 'SeedCarbon_qcPhrase',
+            'TotalN': 'SeedNitrogen',
+            'TotalN_qcApplied': 'SeedNitrogen_qcApplied',
+            'TotalN_qcResult': 'SeedNitrogen_qcResult',
+            'TotalN_qcPhrase': 'SeedNitrogen_qcPhrase'
         })
         .drop(columns = ['LabId', 'Sample', 'Notes']))
 
@@ -675,12 +676,12 @@ def process_ms_nsar_v1(dirPathToMSFiles, dirPathToQAFile, harvestYear):
         .drop(columns = ['LabId', 'Sample', 'Notes']))
 
     # Deal with case that results are only residue, only grain, or both
-    if len(msAllQAGrainClean) > 0 and len(msAllQAResidueClean) == 0:
-        return msAllQAGrainClean.merge(msAllQAResidueClean, on = 'ID2', how = 'left')
-    elif len(msAllQAGrainClean) == 0 and len(msAllQAResidueClean) > 0:
-        return msAllQAResidueClean.merge(msAllQAGrainClean, on = 'ID2', how = 'left')
+    if len(msAllQASeedClean) > 0 and len(msAllQAResidueClean) == 0:
+        return msAllQASeedClean.merge(msAllQAResidueClean, on = 'ID2', how = 'left')
+    elif len(msAllQASeedClean) == 0 and len(msAllQAResidueClean) > 0:
+        return msAllQAResidueClean.merge(msAllQASeedClean, on = 'ID2', how = 'left')
     else:
-        return msAllQAGrainClean.merge(msAllQAResidueClean, on = 'ID2', how = 'left')
+        return msAllQASeedClean.merge(msAllQAResidueClean, on = 'ID2', how = 'left')
     
 def process_nir_infratec1241(dirPathToNirFiles, dirPathToQAFile, harvestYear):
     '''Loads all NIR files into a dataframe, formats it, and makes quality assurance changes as specified
@@ -724,22 +725,22 @@ def process_nir_infratec1241(dirPathToNirFiles, dirPathToQAFile, harvestYear):
     nirsQAClean = (nirsQA
         .drop(columns = ['Date_Time'])
         .rename(columns={
-            'ProtDM': 'GrainProtein', 
-            'ProtDM_qcApplied': 'GrainProtein_qcApplied',
-            'ProtDM_qcResult': 'GrainProtein_qcResult',
-            'ProtDM_qcPhrase': 'GrainProtein_qcPhrase',
-            'Moisture': 'GrainMoisture', 
-            'Moisture_qcApplied': 'GrainMoisture_qcApplied',
-            'Moisture_qcResult': 'GrainMoisture_qcResult',
-            'Moisture_qcPhrase': 'GrainMoisture_qcPhrase',
-            'StarchDM': 'GrainStarch',
-            'StarchDM_qcApplied': 'GrainStarch_qcApplied',
-            'StarchDM_qcResult': 'GrainStarch_qcResult',
-            'StarchDM_qcPhrase': 'GrainStarch_qcPhrase',
-            'WGlutDM': 'GrainGluten',
-            'WGlutDM_qcApplied': 'GrainGluten_qcApplied',
-            'WGlutDM_qcResult': 'GrainGluten_qcResult',
-            'WGlutDM_qcPhrase': 'GrainGluten_qcPhrase'}))
+            'ProtDM': 'SeedProtein', 
+            'ProtDM_qcApplied': 'SeedProtein_qcApplied',
+            'ProtDM_qcResult': 'SeedProtein_qcResult',
+            'ProtDM_qcPhrase': 'SeedProtein_qcPhrase',
+            'Moisture': 'SeedMoisture', 
+            'Moisture_qcApplied': 'SeedMoisture_qcApplied',
+            'Moisture_qcResult': 'SeedMoisture_qcResult',
+            'Moisture_qcPhrase': 'SeedMoisture_qcPhrase',
+            'StarchDM': 'SeedStarch',
+            'StarchDM_qcApplied': 'SeedStarch_qcApplied',
+            'StarchDM_qcResult': 'SeedStarch_qcResult',
+            'StarchDM_qcPhrase': 'SeedStarch_qcPhrase',
+            'WGlutDM': 'SeedGluten',
+            'WGlutDM_qcApplied': 'SeedGluten_qcApplied',
+            'WGlutDM_qcResult': 'SeedGluten_qcResult',
+            'WGlutDM_qcPhrase': 'SeedGluten_qcPhrase'}))
 
     return nirsQAClean
 
@@ -784,17 +785,17 @@ def process_nir_oilseed_lab(dirPathToNirFiles, dirPathToQAFile):
     nirsQAClean = (nirsQA
         .drop(columns = ['IDCol', 'ProjectId'])
         .rename(columns={
-            'ProteinContent': 'GrainProtein', 
-            'ProteinContent_qcApplied': 'GrainProtein_qcApplied',
-            'ProteinContent_qcResult': 'GrainProtein_qcResult',
-            'ProteinContent_qcPhrase': 'GrainProtein_qcPhrase',
-            'MoistureContent': 'GrainMoisture', 
-            'MoistureContent_qcApplied': 'GrainMoisture_qcApplied',
-            'MoistureContent_qcResult': 'GrainMoisture_qcResult',
-            'MoistureContent_qcPhrase': 'GrainMoisture_qcPhrase',
-            'OilContent': 'GrainOil',
-            'OilContent_qcApplied': 'GrainOil_qcApplied',
-            'OilContent_qcResult': 'GrainOil_qcResult',
-            'OilContent_qcPhrase': 'GrainOil_qcPhrase'}))
+            'ProteinContent': 'SeedProtein', 
+            'ProteinContent_qcApplied': 'SeedProtein_qcApplied',
+            'ProteinContent_qcResult': 'SeedProtein_qcResult',
+            'ProteinContent_qcPhrase': 'SeedProtein_qcPhrase',
+            'MoistureContent': 'SeedMoisture', 
+            'MoistureContent_qcApplied': 'SeedMoisture_qcApplied',
+            'MoistureContent_qcResult': 'SeedMoisture_qcResult',
+            'MoistureContent_qcPhrase': 'SeedMoisture_qcPhrase',
+            'OilContent': 'SeedOil',
+            'OilContent_qcApplied': 'SeedOil_qcApplied',
+            'OilContent_qcResult': 'SeedOil_qcResult',
+            'OilContent_qcPhrase': 'SeedOil_qcPhrase'}))
 
     return nirsQAClean
