@@ -131,7 +131,6 @@ def main(args):
                 df_p1a1 = pd.concat([df_p1a1, hy_df], ignore_index = True)
 
     if not cafcore_qc_0_1_4.ensure_columns(df_p1a1, args['dimension_vars'], args['metric_vars'], True):
-        cafcore_qc_0_1_4.ensure_columns(df_p1a1, args['dimension_vars'], args['metric_vars'], True)
         raise Exception('Dataset columns are not formatted correctly')
 
     # Generate p2a1
