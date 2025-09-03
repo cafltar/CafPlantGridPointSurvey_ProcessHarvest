@@ -214,9 +214,8 @@ def hy2023(args):
     path_harvest =  path_hy / 'Harvest01' / 'Harvest01_2023_GP-ART-Lime_INI_YYYYMMDD_Reviewed.xlsm'
     path_harvest_qa = path_hy / 'qaChangeFile_Harvest01.csv'
 
-    # No data yet
-    #path_ea = path_hy / 'EANsarV1'
-    #path_ea_qa = path_hy / 'qaChangeFile_EANsarV1.csv'
+    path_ea = path_hy / 'EANsarV1'
+    path_ea_qa = path_hy / 'qaChangeFile_EANsarV1.csv'
 
     # Some data, but still working out methods for a new NIR
     path_nir = path_hy / 'NirInfratecTM'
@@ -228,20 +227,54 @@ def hy2023(args):
         harvest_year,
         args)
 
-    # No data yet
-    #ea = process_ea_nsar_v1(
-    #    path_ea,
-    #    path_ea_qa,
-    #    harvest_year)
+    ea = process_ea_nsar_v1(
+        path_ea,
+        path_ea_qa,
+        harvest_year)
 
-    # Some data, but still working out methods for a new NIR
-    #nir = process_nir_infratecTM(
-    #    path_nir,
-    #    path_nir_qa,
-    #    harvest_year)
+    # No data, still working out methods for a new NIR
+    nir = process_nir_infratecTM(
+        path_nir,
+        path_nir_qa,
+        harvest_year)
+
+    df = harvest.merge(nir, on = 'ID2', how = 'left').merge(ea, on = 'ID2', how = 'left')
+    df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
+
+    return df
+
+def hy2024(args):
+    harvest_year = 2024
+    path_hy = args['path_input'] / 'HarvestYear' / ('HY' + str(harvest_year))
+    path_harvest =  path_hy / 'Harvest01' / 'Harvest01_2024_GP-ART-Lime_INI_YYYYMMDD.xlsm'
+    path_harvest_qa = path_hy / 'qaChangeFile_Harvest01.csv'
+
+    path_ea = path_hy / 'EANsarV1'
+    path_ea_qa = path_hy / 'qaChangeFile_EANsarV1.csv'
+
+    # No data, still working out methods for a new NIR
+    path_nir = path_hy / 'NirInfratecTM'
+    path_nir_qa = path_hy / 'qaChangeFile_NirInfratecTM.csv'
+
+    harvest = process_harvest01(
+        path_harvest,
+        path_harvest_qa,
+        harvest_year,
+        args)
+
+    ea = process_ea_nsar_v1(
+        path_ea,
+        path_ea_qa,
+        harvest_year)
+
+    # No data, still working out methods for a new NIR
+    nir = process_nir_infratecTM(
+        path_nir,
+        path_nir_qa,
+        harvest_year)
 
 
-    df = harvest
+    df = harvest.merge(nir, on = 'ID2', how = 'left').merge(ea, on = 'ID2', how = 'left')
     df = cafcore_cook_transform_0_1_4.assign_geocoord_to_id2(df)
 
     return df
@@ -797,5 +830,68 @@ def process_nir_oilseed_lab(dirPathToNirFiles, dirPathToQAFile):
             'OilContent_qcApplied': 'SeedOil_qcApplied',
             'OilContent_qcResult': 'SeedOil_qcResult',
             'OilContent_qcPhrase': 'SeedOil_qcPhrase'}))
+
+    return nirsQAClean
+
+def process_nir_infratecTM(dirPathToNirFiles, dirPathToQAFile, harvestYear):
+    '''Loads all NIR files into a dataframe, formats it, and makes quality assurance changes as specified
+    :rtype: DataFrame
+    '''
+
+    # NOTE: 2025-09-03: This is not done, we're still working on the structure of the new NIR file
+
+    filePaths = dirPathToNirFiles / 'NIR*.csv'
+    nirFiles = glob.glob(str(filePaths))
+
+    colNames = ['Date_Time', 'ID2', 'ProtDM', 'Moisture', 'StarchDM', 'WGlutDM']
+    colNamesNotMeasure = ['Date_Time', 'ID2']
+
+    nirs = pd.DataFrame(columns = colNames)
+
+    for nirFile in nirFiles:
+        nir = pd.read_csv(nirFile)
+        
+        # Make sure this is a GP sample from CW or CE
+        nirFilter = nir[(nir['Sample_ID'].str.upper().str.contains('GP')) & ((nir['Sample_ID'].str.upper().str.contains('CW')) | (nir['Sample_ID'].str.upper().str.contains('CE')))]
+        nirParse = (nirFilter
+            .assign(
+                ID2 = nirFilter.apply(lambda row: core.parse_id2_from_nir_sample_id(row['Sample_ID'], harvestYear), axis=1)
+            )
+        )
+
+        #nirs = nirs.append(nirParse, ignore_index = True, sort = True)
+        if nirs.empty:
+            nirs = nirParse
+        else:
+            if not nirParse.empty:
+                nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
+
+    nirs = nirs[colNames]
+
+    nirs = nirs.drop_duplicates()
+
+    nirsQA = cafcore_qc_0_1_4.initialize_qc(nirs, colNamesNotMeasure)
+    nirsQA = cafcore_qc_0_1_4.quality_assurance(nirsQA, dirPathToQAFile, 'Date_Time')
+    nirsQA = cafcore_qc_0_1_4.set_quality_assurance_applied(nirsQA, colNamesNotMeasure)
+
+    nirsQAClean = (nirsQA
+        .drop(columns = ['Date_Time'])
+        .rename(columns={
+            'ProtDM': 'SeedProtein', 
+            'ProtDM_qcApplied': 'SeedProtein_qcApplied',
+            'ProtDM_qcResult': 'SeedProtein_qcResult',
+            'ProtDM_qcPhrase': 'SeedProtein_qcPhrase',
+            'Moisture': 'SeedMoisture', 
+            'Moisture_qcApplied': 'SeedMoisture_qcApplied',
+            'Moisture_qcResult': 'SeedMoisture_qcResult',
+            'Moisture_qcPhrase': 'SeedMoisture_qcPhrase',
+            'StarchDM': 'SeedStarch',
+            'StarchDM_qcApplied': 'SeedStarch_qcApplied',
+            'StarchDM_qcResult': 'SeedStarch_qcResult',
+            'StarchDM_qcPhrase': 'SeedStarch_qcPhrase',
+            'WGlutDM': 'SeedGluten',
+            'WGlutDM_qcApplied': 'SeedGluten_qcApplied',
+            'WGlutDM_qcResult': 'SeedGluten_qcResult',
+            'WGlutDM_qcPhrase': 'SeedGluten_qcPhrase'}))
 
     return nirsQAClean

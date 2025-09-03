@@ -32,6 +32,8 @@ def generate_p1a1(harvest_year, args):
         hy_df = read_transform_qa.hy2022(args)
     elif(harvest_year == 2023):
         hy_df = read_transform_qa.hy2023(args)
+    elif(harvest_year == 2024):
+        hy_df = read_transform_qa.hy2024(args)
     else:
         print('WARNING: no function to process harvest year: ' + str(harvest_year))
 
@@ -129,6 +131,7 @@ def main(args):
                 df_p1a1 = pd.concat([df_p1a1, hy_df], ignore_index = True)
 
     if not cafcore_qc_0_1_4.ensure_columns(df_p1a1, args['dimension_vars'], args['metric_vars'], True):
+        cafcore_qc_0_1_4.ensure_columns(df_p1a1, args['dimension_vars'], args['metric_vars'], True)
         raise Exception('Dataset columns are not formatted correctly')
 
     # Generate p2a1
@@ -153,8 +156,8 @@ if __name__ == "__main__":
         'path_input': path_input,
         'path_output': path_output,
         'path_qc_bounds_p2': (path_input / 'qcBounds_p2.csv'),
-        'harvest_years': [2017, 2018, 2019, 2020, 2021, 2022, 2023],
-        #'harvest_years': [2018, 2019, 2021],
+        'harvest_years': [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        #'harvest_years': [2018, 2019, 2020, 2021, 2022],
         'dimension_vars': ['HarvestYear', 'FieldId', 'ID2', 'SampleId', 'Latitude', 'Longitude', 'Crop', 'Comments'],
         'metric_vars': ['HarvestDate', 'BiomassAirDry', 'SeedMassAirDry', 'SeedMassOvenDry', 'SeedTestWeight', 'CropExists', 'SeedMoisture', 'SeedGluten', 'SeedStarch', 'SeedOil', 'SeedProtein', 'SeedNitrogen', 'SeedCarbon', 'ResidueNitrogen', 'ResidueCarbon'],
         'index_cols': ['HarvestYear', 'ID2'],
