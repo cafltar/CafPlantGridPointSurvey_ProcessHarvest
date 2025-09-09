@@ -839,12 +839,13 @@ def process_nir_infratecTM(dirPathToNirFiles, dirPathToQAFile, harvestYear):
     '''
 
     # NOTE: 2025-09-03: This is not done, we're still working on the structure of the new NIR file
+    # NOTE: 2025-09-09: Updated based on SC file, which only has Oil, TW, and Moisture
 
-    filePaths = dirPathToNirFiles / 'NIR*.csv'
+    filePaths = dirPathToNirFiles / '*.csv'
     nirFiles = glob.glob(str(filePaths))
 
-    colNames = ['Date_Time', 'ID2', 'ProtDM', 'Moisture', 'StarchDM', 'WGlutDM']
-    colNamesNotMeasure = ['Date_Time', 'ID2']
+    colNames = ['Analysis Time', 'Product Name', 'Sample Number', 'Moisture', 'TW', 'Oil0%', 'Protein0%', 'Starch0%', 'Gluten0%', 'ID2']
+    colNamesNotMeasure = ['Analysis Time', 'Product Name', 'Sample Number', 'ID2']
 
     nirs = pd.DataFrame(columns = colNames)
 
@@ -852,10 +853,10 @@ def process_nir_infratecTM(dirPathToNirFiles, dirPathToQAFile, harvestYear):
         nir = pd.read_csv(nirFile)
         
         # Make sure this is a GP sample from CW or CE
-        nirFilter = nir[(nir['Sample_ID'].str.upper().str.contains('GP')) & ((nir['Sample_ID'].str.upper().str.contains('CW')) | (nir['Sample_ID'].str.upper().str.contains('CE')))]
+        nirFilter = nir[(nir['Sample Number'].str.upper().str.contains('GP')) & ((nir['Sample Number'].str.upper().str.contains('CW')) | (nir['Sample Number'].str.upper().str.contains('CE')))]
         nirParse = (nirFilter
             .assign(
-                ID2 = nirFilter.apply(lambda row: core.parse_id2_from_nir_sample_id(row['Sample_ID'], harvestYear), axis=1)
+                ID2 = nirFilter.apply(lambda row: core.parse_id2_from_sampleId(row['Sample Number'], harvestYear), axis=1)
             )
         )
 
@@ -866,32 +867,43 @@ def process_nir_infratecTM(dirPathToNirFiles, dirPathToQAFile, harvestYear):
             if not nirParse.empty:
                 nirs = pd.concat([nirs, nirParse], axis = 0, join = 'outer', ignore_index = True, sort = True)
 
-    nirs = nirs[colNames]
+    # Drop columns not in colNames
+    for col in nirs.columns:
+        if col not in colNames:
+            nirs = nirs.drop(columns = [col])
 
     nirs = nirs.drop_duplicates()
 
     nirsQA = cafcore_qc_0_1_4.initialize_qc(nirs, colNamesNotMeasure)
-    nirsQA = cafcore_qc_0_1_4.quality_assurance(nirsQA, dirPathToQAFile, 'Date_Time')
+    nirsQA = cafcore_qc_0_1_4.quality_assurance(nirsQA, dirPathToQAFile, 'Analysis Time')
     nirsQA = cafcore_qc_0_1_4.set_quality_assurance_applied(nirsQA, colNamesNotMeasure)
 
     nirsQAClean = (nirsQA
-        .drop(columns = ['Date_Time'])
+        .drop(columns = ['Analysis Time', 'Product Name', 'Sample Number'])
         .rename(columns={
-            'ProtDM': 'SeedProtein', 
-            'ProtDM_qcApplied': 'SeedProtein_qcApplied',
-            'ProtDM_qcResult': 'SeedProtein_qcResult',
-            'ProtDM_qcPhrase': 'SeedProtein_qcPhrase',
+            'Protein0%': 'SeedProtein', 
+            'Protein0%_qcApplied': 'SeedProtein_qcApplied',
+            'Protein0%_qcResult': 'SeedProtein_qcResult',
+            'Protein0%_qcPhrase': 'SeedProtein_qcPhrase',
             'Moisture': 'SeedMoisture', 
             'Moisture_qcApplied': 'SeedMoisture_qcApplied',
             'Moisture_qcResult': 'SeedMoisture_qcResult',
             'Moisture_qcPhrase': 'SeedMoisture_qcPhrase',
-            'StarchDM': 'SeedStarch',
-            'StarchDM_qcApplied': 'SeedStarch_qcApplied',
-            'StarchDM_qcResult': 'SeedStarch_qcResult',
-            'StarchDM_qcPhrase': 'SeedStarch_qcPhrase',
-            'WGlutDM': 'SeedGluten',
-            'WGlutDM_qcApplied': 'SeedGluten_qcApplied',
-            'WGlutDM_qcResult': 'SeedGluten_qcResult',
-            'WGlutDM_qcPhrase': 'SeedGluten_qcPhrase'}))
+            'Starch0%': 'SeedStarch',
+            'Starch0%_qcApplied': 'SeedStarch_qcApplied',
+            'Starch0%_qcResult': 'SeedStarch_qcResult',
+            'Starch0%_qcPhrase': 'SeedStarch_qcPhrase',
+            'Gluten0%': 'SeedGluten',
+            'Gluten0%_qcApplied': 'SeedGluten_qcApplied',
+            'Gluten0%_qcResult': 'SeedGluten_qcResult',
+            'Gluten0%_qcPhrase': 'SeedGluten_qcPhrase',
+            'Oil0%': 'SeedOil',
+            'Oil0%_qcApplied': 'SeedOil_qcApplied',
+            'Oil0%_qcResult': 'SeedOil_qcResult',
+            'Oil0%_qcPhrase': 'SeedOil_qcPhrase',
+            'TW': 'SeedTestWeight',
+            'TW_qcApplied': 'SeedTestWeight_qcApplied',
+            'TW_qcResult': 'SeedTestWeight_qcResult',
+            'TW_qcPhrase': 'SeedTestWeight_qcPhrase'}))
 
     return nirsQAClean

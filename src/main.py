@@ -156,7 +156,7 @@ if __name__ == "__main__":
         'path_output': path_output,
         'path_qc_bounds_p2': (path_input / 'qcBounds_p2.csv'),
         'harvest_years': [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-        #'harvest_years': [2018, 2019, 2020, 2021, 2022],
+        #'harvest_years': [2024],
         'dimension_vars': ['HarvestYear', 'FieldId', 'ID2', 'SampleId', 'Latitude', 'Longitude', 'Crop', 'Comments'],
         'metric_vars': ['HarvestDate', 'BiomassAirDry', 'SeedMassAirDry', 'SeedMassOvenDry', 'SeedTestWeight', 'CropExists', 'SeedMoisture', 'SeedGluten', 'SeedStarch', 'SeedOil', 'SeedProtein', 'SeedNitrogen', 'SeedCarbon', 'ResidueNitrogen', 'ResidueCarbon'],
         'index_cols': ['HarvestYear', 'ID2'],
