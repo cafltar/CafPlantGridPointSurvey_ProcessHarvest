@@ -246,7 +246,7 @@ def hy2023(args):
 def hy2024(args):
     harvest_year = 2024
     path_hy = args['path_input'] / 'HarvestYear' / ('HY' + str(harvest_year))
-    path_harvest =  path_hy / 'Harvest01' / 'Harvest01_2024_GP-ART-Lime_INI_YYYYMMDD.xlsm'
+    path_harvest =  path_hy / 'Harvest01' / 'Harvest01_2024_GP-ART-Lime_INI_YYYYMMDD_Reviewed.xlsm'
     path_harvest_qa = path_hy / 'qaChangeFile_Harvest01.csv'
 
     path_ea = path_hy / 'EANsarV1'

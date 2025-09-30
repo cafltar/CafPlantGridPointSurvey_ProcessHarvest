@@ -1,1 +1,61 @@
-ID,Verb,Variable,NewVal,Comment,Reviewer,,
+ID,Verb,Variable,NewVal,Comment,Reviewer
+CE17_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Weeds,Dannielle Beringer
+CE18_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CE42_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CE94_GP_2024_SC_Bio,Flag,SeedMassAirDry,,50% Lambsquarter,Dannielle Beringer
+CE94_GP_2024_SC_Bio,Flag,BiomassAirDry,,50% Lambsquarter,Dannielle Beringer
+CE148_GP_2024_SC_Bio,Flag,SeedMassAirDry,,Double Planted,Dannielle Beringer
+CE148_GP_2024_SC_Bio,Flag,BiomassAirDry,,Double Planted,Dannielle Beringer
+CE189_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE189_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE200_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CE224_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE224_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE225_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CE315_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE315_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE323_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Weeds,Dannielle Beringer
+CE323_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Weeds,Dannielle Beringer
+CE334_GP_2024_SC_Bio,Flag,SeedMassAirDry,,50% Weeds,Dannielle Beringer
+CE334_GP_2024_SC_Bio,Flag,BiomassAirDry,,50% Weeds,Dannielle Beringer
+CE338_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CE371_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE371_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Lambsquarter,Dannielle Beringer
+CE375_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Mayweed,Dannielle Beringer
+CE375_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Mayweed,Dannielle Beringer
+CE376_GP_2024_SC_Bio,Flag,SeedMassAirDry,,50% Mayweed,Dannielle Beringer
+CE376_GP_2024_SC_Bio,Flag,BiomassAirDry,,50% Mayweed,Dannielle Beringer
+CE423_GP_2024_SC_Bio,Flag,SeedMassAirDry,,Majority Mayweed,Dannielle Beringer
+CE423_GP_2024_SC_Bio,Flag,BiomassAirDry,,Majority Mayweed,Dannielle Beringer
+CE424_GP_2024_SC_Bio,Flag,SeedMassAirDry,,Mostly Mayweed,Dannielle Beringer
+CE424_GP_2024_SC_Bio,Flag,BiomassAirDry,,Mostly Mayweed,Dannielle Beringer
+CW428_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW432_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW437_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW438_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW439_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW445_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW447_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW448_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW455_GP_2024_SC_Bio,Update,SeedMassOvenDry,201.5,Grain Section: Non-oven-dried grain (g) did not calculate. And sample was processed through NIR just did not get scanned into file.,Dannielle Beringer
+CW471_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Sprayed,Dannielle Beringer
+CW502_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Weeds,Dannielle Beringer
+CW509_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Mayweed,Dannielle Beringer
+CW509_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Mayweed,Dannielle Beringer
+CW522_GP_2024_SC_Bio,Flag,SeedMassAirDry,,50% Mayweed,Dannielle Beringer
+CW522_GP_2024_SC_Bio,Flag,BiomassAirDry,,50% Mayweed,Dannielle Beringer
+CW535_GP_2024_SC_Bio,Flag,SeedMassAirDry,,25% Mayweed,Dannielle Beringer
+CW535_GP_2024_SC_Bio,Flag,BiomassAirDry,,25% Mayweed,Dannielle Beringer
+CW540_GP_2024_SC_Bio,Update,CropExists,0,No Sample taken. Weeds,Dannielle Beringer
+CW581_GP_2024_SC_Bio,Flag,SeedMassAirDry,,"50 % mayweed at point, only crop harvested. ",Dannielle Beringer
+CW581_GP_2024_SC_Bio,Flag,BiomassAirDry,,"50 % mayweed at point, only crop harvested. ",Dannielle Beringer
+CW602_GP_2024_SC_Bio,Flag,SeedMassAirDry,,2 rows relatively sparce,Dannielle Beringer
+CW602_GP_2024_SC_Bio,Flag,BiomassAirDry,,2 rows relatively sparce,Dannielle Beringer
+CW630_GP_2024_SC_Bio,Flag,SeedMassAirDry,,1 Row Mostly Mayweed,Dannielle Beringer
+CW630_GP_2024_SC_Bio,Flag,BiomassAirDry,,1 Row Mostly Mayweed,Dannielle Beringer
+CW638_GP_2024_SC_Bio,Flag,SeedMassAirDry,,"Sparse, 30 % weeds. ",Dannielle Beringer
+CW638_GP_2024_SC_Bio,Flag,BiomassAirDry,,"Sparse, 30 % weeds. ",Dannielle Beringer
+CW652_GP_2024_SC_Bio,Flag,SeedMassAirDry,,50 % may weed at location. Only crop harvested. ,Dannielle Beringer
+CW652_GP_2024_SC_Bio,Flag,BiomassAirDry,,50 % may weed at location. Only crop harvested. ,Dannielle Beringer
+CW673_GP_2024_SC_Bio,Flag,SeedMassAirDry,,"25 % weeds, only crop harvested",Dannielle Beringer
+CW673_GP_2024_SC_Bio,Flag,BiomassAirDry,,"25 % weeds, only crop harvested",Dannielle Beringer
